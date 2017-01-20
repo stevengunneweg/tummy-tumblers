@@ -9,9 +9,18 @@ public class Victim : MonoBehaviour {
     public Action OnVictimFinished;
 	private float CollisionMagnitude;
 
-    public Player Player;
+    public Player Player { 
+        get {
+            return player;
+        }
+        set {
+            player = value;
+            GetComponent<Renderer>().material.color = player.Color;
+        }
+    }
 
     private SphereCollider sphereCollider;
+    private Player player;
 
     public float Width {
         get {
