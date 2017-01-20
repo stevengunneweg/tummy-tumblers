@@ -14,14 +14,13 @@ public class MountainCaster : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButtonDown(0)) {
-      RaycastHit hit;
-      Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+     		RaycastHit hit;
+      		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-      if (Physics.Raycast(ray, out hit)) {
-        SpawnObject(hit.point);
-        // Do something with the object that was hit by the raycast.
-      }
-    }
+      		if (Physics.Raycast(ray, out hit, 9999999999, LayerMask.GetMask("Mountain"))) {
+        		SpawnObject(hit.point);
+      		}
+    	}
     }
     void SpawnObject(Vector3 pos)
     {
