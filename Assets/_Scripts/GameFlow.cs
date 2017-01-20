@@ -70,8 +70,6 @@ public class GameFlow : MonoBehaviour {
         if(victimsAlive <= 0){
             EndRound();
         }
-
-        victimAmountText.text = victimsFinished + "/" + currentVictimAmount;
     }
 
 }
