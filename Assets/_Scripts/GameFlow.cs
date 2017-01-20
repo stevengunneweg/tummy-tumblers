@@ -11,6 +11,9 @@ public class GameFlow : MonoBehaviour {
     [SerializeField]
     private Transform victimSpawnPoint;
 
+    [SerializeField]
+    private BuildmodeUI buildmodeUI;
+
     public List<Player> Players { get; private set; }
     public bool IsInBuildingMode;
     public int Credits;
@@ -56,7 +59,11 @@ public class GameFlow : MonoBehaviour {
     }
 
     public void EndRound(){
+        buildmodeUI.Show();
+
         StartBuildMode();
+
+        buildmodeUI.Hide();
     }
 
     public void StartBuildMode(){

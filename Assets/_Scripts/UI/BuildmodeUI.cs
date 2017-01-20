@@ -10,6 +10,8 @@ public class BuildmodeUI : MonoBehaviour {
     private GameFlow gameFlow;
 
     private void Start(){
+        Hide();
+
         gameFlow = FindObjectOfType<GameFlow>();
         bars = GetComponentsInChildren<PlayerBar>();
 
@@ -26,9 +28,11 @@ public class BuildmodeUI : MonoBehaviour {
     }
 
     public void Show(){
-    }
+        gameObject.SetActive(true);
+    }  
 
     public void Hide(){
+        gameObject.SetActive(false);
     }   
 
 }
