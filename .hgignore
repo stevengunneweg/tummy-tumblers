@@ -1,0 +1,16 @@
+syntax: glob
+Library/**
+Temp/**
+WebPlayer/**
+Builds/**
+obj/*
+Assets/UnityVS/**
+Assets/UnityVS.meta
+*.pidb
+*.csproj
+*.userprefs
+*.sln
+*.unityproj
+*.unitypackage
+*.suo
+*.user
