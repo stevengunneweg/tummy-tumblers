@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MountainCaster : MonoBehaviour {
 
+    [SerializeField]
+    private GameObject _hillPrefab;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -13,4 +16,8 @@ public class MountainCaster : MonoBehaviour {
 	void Update () {
 		
 	}
+    void SpawnObject()
+    {
+
+    }
 }
