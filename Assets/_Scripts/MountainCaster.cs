@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class MountainCaster : MonoBehaviour {
 
-    [SerializeField]
-    private GameObject _hillPrefab;
-
 	[SerializeField]
 	private AnimationCurve _increaseCurve;
 
@@ -25,15 +22,7 @@ public class MountainCaster : MonoBehaviour {
 
       		if (Physics.Raycast(ray, out hit, 9999999999, LayerMask.GetMask("Mountain"))) {
 				this._mountain.Increase (hit.point, 3, this._increaseCurve, 0.5f);
-
-        		//SpawnObject(hit.point);
       		}
     	}
     }
-    void SpawnObject(Vector3 pos)
-    {
-        GameObject hill = Instantiate(_hillPrefab, pos, this.transform.rotation);
-        hill.transform.SetParent(this.transform);
-    }
-
 }
