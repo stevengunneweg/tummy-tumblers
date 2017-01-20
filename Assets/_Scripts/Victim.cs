@@ -23,7 +23,19 @@ public class Victim : MonoBehaviour {
     private void OnCollisionEnter(Collision collision) {
         if(collision.gameObject.GetComponent<Deadzone>() != null){
             Kill();
+        }else if(collision.gameObject.GetComponent<Finish>() != null){
+            Finish();
         }
+
+
+    }
+
+    public void Finish(){
+        if(OnVictimFinished != null){
+            OnVictimFinished.Invoke();
+        }
+
+        GameObject.Destroy(gameObject);
     }
 
     public void Kill(){
