@@ -9,6 +9,8 @@ public class Victim : MonoBehaviour {
     public Action OnVictimFinished;
 	private float CollisionMagnitude;
 
+    public Player Player;
+
     private SphereCollider sphereCollider;
 
     public float Width {
