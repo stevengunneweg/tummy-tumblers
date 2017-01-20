@@ -8,8 +8,8 @@ public class PlayerControls : MonoBehaviour {
     private Rigidbody _rigidBody;
     public float speed =15;
     private string _prefix = "";
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         if (GetComponent<Victim>()!=null)
         {
             _playerIndex = this.GetComponent<Victim>().Player.Index;
@@ -27,15 +27,16 @@ public class PlayerControls : MonoBehaviour {
             _rigidBody = GetComponent<Rigidbody>();
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         if (_rigidBody != null)
         {
             if (Input.GetAxis(_prefix + "_Xaxis") > 0.05)
-                _rigidBody.AddForce( Vector3.right* speed);
+                _rigidBody.AddForce((Vector3.right * speed)*((Vector3.right * speed).x- _rigidBody.velocity.x));
             if (Input.GetAxis(_prefix + "_Xaxis") < -0.05)
-                _rigidBody.AddForce(-Vector3.right* speed);
+                _rigidBody.AddForce((-Vector3.right * speed) * (_rigidBody.velocity.x- (-Vector3.right * speed).x));
         }
     }
 }
