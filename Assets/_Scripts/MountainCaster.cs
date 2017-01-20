@@ -14,10 +14,11 @@ public class MountainCaster : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
-    void SpawnObject()
-    {
-
     }
+    void SpawnObject(Vector3 pos)
+    {
+        GameObject hill = Instantiate(_hillPrefab, pos, this.transform.rotation);
+        hill.transform.SetParent(this.transform);
+    }
+
 }
