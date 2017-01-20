@@ -8,6 +8,8 @@ public class Victim : MonoBehaviour {
 	public Action OnVictimKill;
     public Action OnVictimFinished;
 
+    public Player Player;
+
     private SphereCollider sphereCollider;
 
     public float Width {
@@ -26,8 +28,6 @@ public class Victim : MonoBehaviour {
         }else if(collision.gameObject.GetComponent<Finish>() != null){
             Finish();
         }
-
-
     }
 
     public void Finish(){
