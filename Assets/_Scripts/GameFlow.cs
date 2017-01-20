@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameFlow : MonoBehaviour {
 
@@ -10,11 +11,16 @@ public class GameFlow : MonoBehaviour {
     [SerializeField]
     private Transform victimSpawnPoint;
 
+    [SerializeField]
+    private Text victimAmountText;
+
     public bool IsBuildingAllowed;
     public int Credits;
 
+
     private float currentVictimAmount;
     private float victimsAlive;
+    private float victimsFinished;
 
     private void Start(){
         StartWave();
@@ -23,6 +29,8 @@ public class GameFlow : MonoBehaviour {
     public void StartWave(){
         currentVictimAmount = 10;
         victimsAlive = currentVictimAmount;
+        victimsFinished = 0;
+
         for(int i = 0; i < currentVictimAmount; i++){
             Victim victim = Instantiate(victimPrefab);
             victim.transform.position = victimSpawnPoint.position;
@@ -44,12 +52,15 @@ public class GameFlow : MonoBehaviour {
     private void OnVictimFinished(){
         Credits++;
         victimsAlive--;
+        victimsFinished++;
     }
 
     private void Update(){
         if(victimsAlive <= 0){
             EndRound();
         }
+
+        victimAmountText.text = victimsFinished + "/" + currentVictimAmount;
     }
 
 }
