@@ -43,18 +43,18 @@ public class Victim : MonoBehaviour {
 	}
 
     public void Finish(){
+        GameObject.Destroy(gameObject);
+
         if(OnVictimFinished != null){
             OnVictimFinished.Invoke();
         }
-
-        GameObject.Destroy(gameObject);
     }
 
     public void Kill(){
+        GameObject.Destroy(gameObject);
+
         if(OnVictimKill != null){
             OnVictimKill.Invoke();
         }
-
-        GameObject.Destroy(gameObject);
     }
 }
