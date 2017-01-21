@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Builder : MonoBehaviour {
 
+	[SerializeField]
+	private GameObject _minePrefab;
+	[SerializeField]
+	private GameObject _jumpPrefab;
+
     public Player player;
     public Mountain mountain;
     public float moveSpeed = 1f;
@@ -42,7 +47,19 @@ public class Builder : MonoBehaviour {
         transform.position += transform.right * -xvalue;
         transform.position += transform.forward * yValue;
 
-        if (_currentNumberOfPresses > 0) {
+		if (_currentNumberOfPresses > 0) {
+			if (Input.GetButtonDown (aButton)) {
+				GameObject mine = Instantiate<GameObject> (_minePrefab);
+				mine.transform.position = transform.position;
+				_currentNumberOfPresses--;
+			} else if (Input.GetButtonDown (bButton)) {
+				GameObject jump = Instantiate<GameObject> (_jumpPrefab);
+				jump.transform.position = transform.position;
+				_currentNumberOfPresses--;
+			}
+		}
+
+        /*if (_currentNumberOfPresses > 0) {
             if (Input.GetButtonDown(aButton)) {
                 mountain.Increase(transform.position, radius, impactCurve, impact);
                 _currentNumberOfPresses -= 1;
@@ -50,6 +67,6 @@ public class Builder : MonoBehaviour {
                 mountain.Increase(transform.position, radius, impactCurve, -impact);
                 _currentNumberOfPresses -= 1;
             }
-        }
+        }*/
     }
 }
