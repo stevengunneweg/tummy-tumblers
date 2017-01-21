@@ -22,6 +22,7 @@ ModelImporter:
     100028: Character002
     100030: Sphere003
     100032: //RootNode
+    100034: Victim
     400000: CATRigClavicle
     400002: CATRigHub002
     400004: CATRigLArm1
@@ -39,9 +40,12 @@ ModelImporter:
     400028: Character002
     400030: Sphere003
     400032: //RootNode
+    400034: Victim
     4300000: Sphere003
+    4300002: Victim
     9500000: //RootNode
     13700000: Sphere003
+    13700002: Victim
   materials:
     importMaterials: 1
     materialName: 0
