@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4513929, g: 0.50046575, b: 0.5700983, a: 1}
+  m_IndirectSpecularColor: {r: 0.45139253, g: 0.50046533, b: 0.57009786, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -217,7 +217,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1994621406}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &59498294
 GameObject:
@@ -1322,7 +1322,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1994621406}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &435451666
 GameObject:
@@ -1478,7 +1478,7 @@ Transform:
   m_Children:
   - {fileID: 1945779837}
   m_Father: {fileID: 1994621406}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &464196980
 GameObject:
@@ -2153,6 +2153,7 @@ GameObject:
   - component: {fileID: 801984110}
   - component: {fileID: 801984111}
   - component: {fileID: 801984112}
+  - component: {fileID: 801984113}
   m_Layer: 8
   m_Name: MountainSide
   m_TagString: Untagged
@@ -2171,7 +2172,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1994621406}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &801984110
 MonoBehaviour:
@@ -2249,6 +2250,20 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!64 &801984113
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 801984108}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 1ecc8752ba3e6ac4ea193e1f83988019, type: 2}
 --- !u!1 &812184516
 GameObject:
   m_ObjectHideFlags: 0
@@ -4118,6 +4133,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugColor: {r: 1, g: 0, b: 0.972414, a: 1}
+--- !u!1 &1377034791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1377034792}
+  m_Layer: 0
+  m_Name: Fog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1377034792
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1377034791}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1894346364}
+  - {fileID: 1739988718}
+  - {fileID: 2048208578}
+  m_Father: {fileID: 1994621406}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1401469898
 GameObject:
   m_ObjectHideFlags: 0
@@ -5172,7 +5218,7 @@ GameObject:
   - component: {fileID: 1739988721}
   - component: {fileID: 1739988719}
   m_Layer: 8
-  m_Name: Fogs (1)
+  m_Name: FogPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5184,12 +5230,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1739988717}
-  m_LocalRotation: {x: 0.5496228, y: 0.44471547, z: -0.4441104, w: 0.5503716}
+  m_LocalRotation: {x: 0.5496228, y: 0.4447155, z: -0.4441104, w: 0.55037165}
   m_LocalPosition: {x: 0.0999971, y: -6.6, z: 25.800001}
-  m_LocalScale: {x: 323.99554, y: 323.9957, z: 323.9957}
+  m_LocalScale: {x: 323.99548, y: 323.99567, z: 323.99573}
   m_Children: []
-  m_Father: {fileID: 1994621406}
-  m_RootOrder: 8
+  m_Father: {fileID: 1377034792}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 89.921005, y: 0, z: -77.802}
 --- !u!23 &1739988719
 MeshRenderer:
@@ -5381,7 +5427,7 @@ Transform:
   - {fileID: 1339513517}
   - {fileID: 1241848318}
   m_Father: {fileID: 1994621406}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1805991614
 GameObject:
@@ -5421,7 +5467,7 @@ Transform:
   - {fileID: 97529552}
   - {fileID: 2040497644}
   m_Father: {fileID: 1994621406}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1808387287
 GameObject:
@@ -5590,7 +5636,7 @@ GameObject:
   - component: {fileID: 1894346367}
   - component: {fileID: 1894346365}
   m_Layer: 8
-  m_Name: Fogs
+  m_Name: FogPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5604,10 +5650,10 @@ Transform:
   m_GameObject: {fileID: 1894346363}
   m_LocalRotation: {x: 0.7066252, y: -0, z: -0, w: 0.7075881}
   m_LocalPosition: {x: 0.1, y: -3.6, z: 25.8}
-  m_LocalScale: {x: 323.99554, y: 323.9955, z: 323.9955}
+  m_LocalScale: {x: 323.99554, y: 323.99564, z: 323.99564}
   m_Children: []
-  m_Father: {fileID: 1994621406}
-  m_RootOrder: 7
+  m_Father: {fileID: 1377034792}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 89.926, y: 0, z: 0}
 --- !u!23 &1894346365
 MeshRenderer:
@@ -5676,7 +5722,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1994621406}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1896260414
 MonoBehaviour:
@@ -6289,6 +6335,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1377034792}
   - {fileID: 801984109}
   - {fileID: 1896260413}
   - {fileID: 1764968763}
@@ -6296,9 +6343,6 @@ Transform:
   - {fileID: 413208719}
   - {fileID: 42547525}
   - {fileID: 462129043}
-  - {fileID: 1894346364}
-  - {fileID: 1739988718}
-  - {fileID: 2048208578}
   m_Father: {fileID: 435451667}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6383,7 +6427,7 @@ GameObject:
   - component: {fileID: 2048208581}
   - component: {fileID: 2048208579}
   m_Layer: 8
-  m_Name: Fogs (2)
+  m_Name: FogPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6397,10 +6441,10 @@ Transform:
   m_GameObject: {fileID: 2048208577}
   m_LocalRotation: {x: 0.30163655, y: 0.6398813, z: -0.6390106, w: 0.3020477}
   m_LocalPosition: {x: 0.099994, y: -2.2, z: 25.8}
-  m_LocalScale: {x: 323.99545, y: 323.9956, z: 323.9957}
+  m_LocalScale: {x: 323.9956, y: 323.99573, z: 323.99582}
   m_Children: []
-  m_Father: {fileID: 1994621406}
-  m_RootOrder: 9
+  m_Father: {fileID: 1377034792}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 89.923004, y: 0, z: -129.40201}
 --- !u!23 &2048208579
 MeshRenderer:
