@@ -8,10 +8,11 @@ public class PlayerControls : MonoBehaviour {
     private Rigidbody _rigidBody;
 
     public float speed = 15;
-    
+    private int _index = 0;
     protected void Start () {
         _rigidBody = GetComponent<Rigidbody>();
         _player = GetComponent<Victim>().player;
+        _index = GetComponent<Victim>().index;
     }
     
     protected void Update()
@@ -19,9 +20,10 @@ public class PlayerControls : MonoBehaviour {
         if (_rigidBody != null)
         {
             string _prefix = _player.GetAxisPrefix();
-            if (Input.GetAxis(_prefix + "_Xaxis") > 0.05|| Input.GetAxis(_prefix + "_ArrowXaxis") > 0.05)
+            string _R = _index == 0 ? "" : "R";
+            if (Input.GetAxis(_prefix + "_"+_R+"Xaxis") > 0.05)
                 _rigidBody.AddForce((-Vector3.left * speed)*((Vector3.left * speed).x- _rigidBody.velocity.x));
-            if (Input.GetAxis(_prefix + "_Xaxis") < -0.05 || Input.GetAxis(_prefix + "_ArrowXaxis") < -0.05)
+            if (Input.GetAxis(_prefix + "_" + _R + "Xaxis") < -0.05)
                 _rigidBody.AddForce((Vector3.left * speed) * (_rigidBody.velocity.x- (-Vector3.left * speed).x));
         }
     }
