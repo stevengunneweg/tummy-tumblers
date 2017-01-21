@@ -29,7 +29,7 @@ public class Builder : MonoBehaviour {
         string aButton = prefix + "_Abutton";
         string bButton = prefix + "_Bbutton";
 
-        transform.position += transform.right * Input.GetAxis(xAxis);
+        transform.position += transform.right * -Input.GetAxis(xAxis);
         transform.position += transform.forward * Input.GetAxis(yAxis);
 
         if (_currentNumberOfPresses > 0) {

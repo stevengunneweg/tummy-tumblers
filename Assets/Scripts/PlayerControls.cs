@@ -20,9 +20,9 @@ public class PlayerControls : MonoBehaviour {
         {
             string _prefix = _player.GetAxisPrefix();
             if (Input.GetAxis(_prefix + "_Xaxis") > 0.05)
-                _rigidBody.AddForce((Vector3.left * speed)*((Vector3.left * speed).x- _rigidBody.velocity.x));
+                _rigidBody.AddForce((-Vector3.left * speed)*((Vector3.left * speed).x- _rigidBody.velocity.x));
             if (Input.GetAxis(_prefix + "_Xaxis") < -0.05)
-                _rigidBody.AddForce((-Vector3.left * speed) * (_rigidBody.velocity.x- (-Vector3.left * speed).x));
+                _rigidBody.AddForce((Vector3.left * speed) * (_rigidBody.velocity.x- (-Vector3.left * speed).x));
         }
     }
 }
