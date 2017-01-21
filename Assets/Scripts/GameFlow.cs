@@ -20,6 +20,7 @@ public class GameFlow : MonoBehaviour {
     public Transform builderParent;
     public Transform mountainOverviewPointParent;
     public Mountain mountain;
+    public BuildModeUI buildModeUI;
 
     [Header("Game Play")]
     public int amountOfPlayers = 4;
@@ -46,7 +47,12 @@ public class GameFlow : MonoBehaviour {
 
             Transform[] mountainFocusGroup = mountainOverviewPointParent.GetComponentsInChildren<Transform>().Skip(1).ToArray();
             cameraController.Focus(mountainFocusGroup);
-            yield return new WaitForSeconds(5f);
+
+            yield return new WaitForSeconds(2f);
+
+            buildModeUI.ShowBuildTime();
+
+            yield return new WaitForSeconds(2f);
 
             builderParent.gameObject.SetActive(true);
             foreach (Transform builderChild in builderParent) {
