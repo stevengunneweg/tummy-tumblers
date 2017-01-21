@@ -725,6 +725,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8119d6468dd77834cacca2a1929108ec, type: 3}
   - {fileID: 8300000, guid: 89a031c75ff2d1b4095ac7fa5db23ecf, type: 3}
   - {fileID: 8300000, guid: 35dfd24ac4e123b41bbaf28b8a15b278, type: 3}
+  soundScreamMale: {fileID: 8300000, guid: de1b5e8c1a505b544a1fc551d6252257, type: 3}
+  soundScreamFemale: {fileID: 8300000, guid: 185fcc4b5e38bdd48a9a7e7c5386aeb8, type: 3}
   player: {fileID: 0}
   mountain: {fileID: 0}
   index: 0
