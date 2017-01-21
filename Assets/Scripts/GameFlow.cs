@@ -99,6 +99,7 @@ public class GameFlow : MonoBehaviour {
 
                 Victim victim = victimInstance.GetComponent<Victim>();
                 victim.player = player;
+                victim.mountain = mountain;
             }
         }
     }

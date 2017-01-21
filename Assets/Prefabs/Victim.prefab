@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 114917011709280120}
   - component: {fileID: 135106049568366230}
   - component: {fileID: 54104543611757190}
+  - component: {fileID: 114449135488858872}
   m_Layer: 0
   m_Name: Victim
   m_TagString: Untagged
@@ -584,6 +585,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114449135488858872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1588789569694450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed531c0c376fec42a6cac92737ae80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updatePosition: 0
+  track: {fileID: 4042802120884676}
+  trackTime: 3
 --- !u!114 &114503756531270736
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -621,6 +636,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  mountain: {fileID: 0}
+  destroyDuration: 2
+  destroyDistanceThreshold: 0.3
 --- !u!135 &135106049568366230
 SphereCollider:
   m_ObjectHideFlags: 1
