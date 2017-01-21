@@ -24,7 +24,7 @@ public class WallStructure : BaseStructure
         //victim.GetComponent<Rigidbody>().AddForce(shock, ForceMode.VelocityChange);
 
 
-        Destroy(gameObject, 1.5f);
+        Destroy(gameObject, 1f);
         //Destroy(victim.gameObject, 1f);
     }
 }

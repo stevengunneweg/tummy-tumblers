@@ -7,9 +7,9 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: No Name
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
+  m_Shader: {fileID: 4800000, guid: d98ac3aa608a64a2aac3d0c67b4c0e37, type: 3}
+  m_ShaderKeywords: _EMISSION
+  m_LightmapFlags: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
@@ -46,9 +46,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _Grid
+      second:
+        m_Texture: {fileID: 2800000, guid: b8280de85b7804ad2a856a7ad1f159d1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: b49775c47dd4a74448096599b68406d0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -125,3 +131,12 @@ Material:
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _GrassColor
+      second: {r: 0.18382353, g: 0.16495647, b: 0.05947232, a: 1}
+    - first:
+        name: _GridColor
+      second: {r: 0.17647058, g: 0.17647058, b: 0.17647058, a: 1}
+    - first:
+        name: _HillColor
+      second: {r: 0.5147059, g: 0.4414151, b: 0.3103374, a: 1}

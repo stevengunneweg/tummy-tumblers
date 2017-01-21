@@ -5,6 +5,9 @@ using UnityEngine;
 public class JumpStructure : BaseStructure {
 
     [SerializeField]
+    private int uses = 3;
+
+    [SerializeField]
     private GameObject visualGameObject;
 
     [SerializeField]
@@ -16,6 +19,10 @@ public class JumpStructure : BaseStructure {
         victim.GetComponent<Rigidbody>().AddForce(visualGameObject.transform.up * 8, ForceMode.VelocityChange);
 
         shockParticles.Play();
+        uses--;
+        if (uses <= 0)
+            Destroy(gameObject, 0.5f);
+
     }
     
 }
