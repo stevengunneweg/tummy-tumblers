@@ -28,7 +28,7 @@ public class GameFlow : MonoBehaviour {
     private void Awake(){
         Players = new List<Player>();
         for(int i = 0; i < 4; i++){
-            Players.Add(new Player(0, playerColors[i]));
+            Players.Add(new Player(i, playerColors[i]));
         }
     }
 

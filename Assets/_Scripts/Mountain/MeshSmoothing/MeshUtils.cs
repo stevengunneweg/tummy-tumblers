@@ -159,20 +159,20 @@ public class MeshUtils {
     // Clone a mesh
     public static Mesh CloneMesh(Mesh mesh) {
         Mesh clone = new Mesh();
-        clone.vertices = mesh.vertices;
-        clone.normals = mesh.normals;
-        clone.tangents = mesh.tangents;
-        clone.triangles = mesh.triangles;
-        clone.uv = mesh.uv;
-        clone.uv2 = mesh.uv2;
-        clone.uv3 = mesh.uv3;
-        clone.uv4 = mesh.uv4;
-        clone.bindposes = mesh.bindposes;
-        clone.boneWeights = mesh.boneWeights;
+        clone.vertices = mesh.vertices.Clone() as Vector3[];
+        clone.normals = mesh.normals.Clone() as Vector3[];
+        clone.tangents = mesh.tangents.Clone() as Vector4[];
+        clone.triangles = mesh.triangles.Clone() as int[];
+        clone.uv = mesh.uv.Clone() as Vector2[];
+        clone.uv2 = mesh.uv2.Clone() as Vector2[];
+        clone.uv3 = mesh.uv3.Clone() as Vector2[];
+        clone.uv4 = mesh.uv4.Clone() as Vector2[];
+        clone.bindposes = mesh.bindposes.Clone() as Matrix4x4[];
+        clone.boneWeights = mesh.boneWeights.Clone() as BoneWeight[];
         clone.bounds = mesh.bounds;
-        clone.colors = mesh.colors;
+        clone.colors = mesh.colors.Clone() as Color[];
         clone.name = mesh.name;
-        //TODO : Are we missing anything?
+
         return clone;
     }
 }

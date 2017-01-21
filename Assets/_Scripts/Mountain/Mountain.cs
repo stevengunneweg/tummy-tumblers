@@ -161,6 +161,12 @@ public class Mountain : MonoBehaviour {
     }
     #endregion
     
+    protected void Start() {
+        Mesh mesh = MeshUtils.CloneMesh(meshFilter.mesh);
+        meshFilter.sharedMesh = mesh;
+        meshCollider.sharedMesh = mesh;
+    }
+
     public void Increase(Vector3 worldPoint, float globalRadius, AnimationCurve falloffCurve, float amount) {
         Vector3 localPoint = transform.InverseTransformPoint(worldPoint);
         int localRadius = Mathf.CeilToInt(transform.InverseTransformVector(Vector3.up * globalRadius).magnitude);
