@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using System.Linq;
 
-public class Victim : MonoBehaviour {
+public class MenuVictim : MonoBehaviour {
 
 	public List<AudioClip> soundsMale;	
 	public List<AudioClip> soundsFemale;
@@ -18,6 +18,8 @@ public class Victim : MonoBehaviour {
     [HideInInspector]
     public int index = 0;
 
+    public SpawnArea spawnArea;
+
     private Vector3 collisionVector;
     private const string deadzoneTag = "Deadzone";
     private const string finishTag = "Finish";
@@ -30,7 +32,12 @@ public class Victim : MonoBehaviour {
     private float _currentDestoryTime;
     
     protected void Update() {
-		if (GetComponent<Rigidbody> ().velocity.y < -8) {
+        if(transform.position.y < 15){
+            Destroy(gameObject);
+            spawnArea.Spawn();
+        }
+
+		if (GetComponent<Rigidbody> ().velocity.y < -5) {
 			if (!this.isFalling) {
 				this.isFalling = true;
 				if (this.gender) {
@@ -44,19 +51,22 @@ public class Victim : MonoBehaviour {
 			this.isFalling = false;
 		}
 
-        // Find current and oldest position in Mountain space
-        Tracker tracker = GetComponent<Tracker>();
-        Vector3 oldestPosition = mountain.transform.InverseTransformPoint(tracker.GetOldestTrackedPosition());
-        Vector3 currentPosition = mountain.transform.InverseTransformPoint(transform.position);
+        if(mountain != null){
+            
+            // Find current and oldest position in Mountain space
+            Tracker tracker = GetComponent<Tracker>();
+            Vector3 oldestPosition = mountain.transform.InverseTransformPoint(tracker.GetOldestTrackedPosition());
+            Vector3 currentPosition = mountain.transform.InverseTransformPoint(transform.position);
 
-        // Check if moved forward more than the destroy distance threshold
-        if (Mathf.Abs(oldestPosition.z - currentPosition.z) < destroyDistanceThreshold) {
-            _currentDestoryTime += Time.deltaTime;
-            if (_currentDestoryTime >= destroyDuration) {
-                Kill();
+            // Check if moved forward more than the destroy distance threshold
+            if (Mathf.Abs(oldestPosition.z - currentPosition.z) < destroyDistanceThreshold) {
+                _currentDestoryTime += Time.deltaTime;
+                if (_currentDestoryTime >= destroyDuration) {
+                    Kill();
+                }
+            } else {
+                _currentDestoryTime = 0f;
             }
-        } else {
-            _currentDestoryTime = 0f;
         }
     }
 
@@ -99,12 +109,12 @@ public class Victim : MonoBehaviour {
 
     public void Finish(){
         player.score++;
-        Effects.instance.Do(Effects.EffectType.FireWorks, transform.position);
-        Destroy(gameObject);
+        Effects effects = GameObject.FindGameObjectsWithTag("Effects").Where(g => g.GetComponent<Effects>() != null).Select(g => g.GetComponent<Effects>()).FirstOrDefault();
+        effects.Do(Effects.EffectType.FireWorks, transform.position);
+        Kill();
     }
 
     public void Kill(){
-        Effects.instance.Do(Effects.EffectType.Explosion, transform.position);
         Destroy(gameObject);
     }
 }

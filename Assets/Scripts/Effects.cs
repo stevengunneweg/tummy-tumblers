@@ -5,11 +5,16 @@ using System.Linq;
 
 public class Effects : MonoBehaviour {
     
-
+    public static Effects instance {
+        get {
+            return GameObject.FindGameObjectsWithTag("Effects").Where(g => g.GetComponent<Effects>() != null).Select(g => g.GetComponent<Effects>()).FirstOrDefault();
+        }
+    }
 
     public enum EffectType {
         FireWorks,
-		PlayerDetect
+		PlayerDetect,
+        Explosion
     }
 
     [System.Serializable]
