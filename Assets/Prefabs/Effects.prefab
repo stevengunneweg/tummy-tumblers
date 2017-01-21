@@ -57,3 +57,7 @@ MonoBehaviour:
     - {fileID: 100002, guid: 3275f8d729d1bf443be1630465fef042, type: 2}
     - {fileID: 100002, guid: d77a1d4564e1e3b4ea665d96c41890f2, type: 2}
     time: 3
+  - effectType: 1
+    variationPrefabs:
+    - {fileID: 1535658866780408, guid: 6e8ae80089177884faaa6a6c7af0e537, type: 2}
+    time: 3

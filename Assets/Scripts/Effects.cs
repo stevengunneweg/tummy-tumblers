@@ -8,7 +8,8 @@ public class Effects : MonoBehaviour {
 
 
     public enum EffectType {
-        FireWorks
+        FireWorks,
+		PlayerDetect
     }
 
     [System.Serializable]
