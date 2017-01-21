@@ -99,12 +99,12 @@ public class Victim : MonoBehaviour {
 
     public void Finish(){
         player.score++;
-        Effects effects = GameObject.FindGameObjectsWithTag("Effects").Where(g => g.GetComponent<Effects>() != null).Select(g => g.GetComponent<Effects>()).FirstOrDefault();
-        effects.Do(Effects.EffectType.FireWorks, transform.position);
-        Kill();
+        Effects.instance.Do(Effects.EffectType.FireWorks, transform.position);
+        Destroy(gameObject);
     }
 
     public void Kill(){
+        Effects.instance.Do(Effects.EffectType.Explosion, transform.position);
         Destroy(gameObject);
     }
 }

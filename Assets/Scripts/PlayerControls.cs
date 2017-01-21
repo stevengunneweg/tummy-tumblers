@@ -28,8 +28,7 @@ public class PlayerControls : MonoBehaviour {
                 _rigidBody.AddForce((Vector3.left * speed) * (_rigidBody.velocity.x- (-Vector3.left * speed).x));
 
 			if ((Input.GetButtonDown(_prefix + "_LTClick") && this._index == 0) || (Input.GetButtonDown(_prefix + "_RTClick") && this._index == 1)) {
-				Effects effects = GameObject.FindGameObjectsWithTag("Effects").Where(g => g.GetComponent<Effects>() != null).Select(g => g.GetComponent<Effects>()).FirstOrDefault();
-				effects.Do(Effects.EffectType.PlayerDetect, transform.position, Quaternion.identity, this.transform);
+				Effects.instance.Do(Effects.EffectType.PlayerDetect, transform.position, Quaternion.identity, this.transform);
 			}
         }
     }

@@ -69,7 +69,11 @@ public class Builder : MonoBehaviour {
         Destroy(tempPrefab.gameObject);
         tempPrefab = null;
 
-        BuildModeOverlay overlay = FindObjectsOfType<BuildModeOverlay>().First(b => b.Builder == this);
-        overlay.Hide();
+        BuildModeOverlay overlay = FindObjectsOfType<BuildModeOverlay>().FirstOrDefault(b => b.Builder == this);
+        if (overlay != null) {
+            overlay.Hide();
+        } else {
+            Debug.Log("Cannot find overlay for the builder!", this);
+        }
     }
 }
