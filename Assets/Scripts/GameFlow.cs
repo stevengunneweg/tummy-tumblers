@@ -19,6 +19,7 @@ public class GameFlow : MonoBehaviour {
     public Transform playerParent;
     public Transform builderParent;
     public Transform mountainOverviewPointParent;
+    public Mountain mountain;
 
     [Header("Game Play")]
     public int amountOfPlayers = 4;
@@ -78,6 +79,7 @@ public class GameFlow : MonoBehaviour {
 
             Builder builder = builderInstance.GetComponent<Builder>();
             builder.player = player;
+            builder.mountain = mountain;
         }
     }
 
