@@ -211,7 +211,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1278629007822984}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.4503071, y: 19.740974, z: 11.786803}
+  m_LocalPosition: {x: -2.0890193, y: 17.055624, z: 16.821117}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4479993586166178}
@@ -402,6 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a30089e53df52ed4c9031926c01a8c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alignRotation: 0
   debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114848576690308554
 MonoBehaviour:
@@ -414,6 +415,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f1045c3f8f8046d8a2e9426a665d393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  editMaterial: {fileID: 2100000, guid: d2b75e00d888945a1ac59969b826c858, type: 2}
+  visualRenderer: {fileID: 23268054971133312}
   visualGameObject: {fileID: 1080874442466602}
   shockParticles: {fileID: 198900068445015876}
 --- !u!136 &136637552206174940

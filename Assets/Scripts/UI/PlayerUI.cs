@@ -17,9 +17,11 @@ public class PlayerUI : MonoBehaviour {
         if (index < playerParent.childCount) {
             Transform playerTransform = playerParent.GetChild(index);
             Player player = playerTransform.GetComponent<Player>();
-            nameText.text = player.name;
-            scoreText.text = player.score.ToString("0");
-            background.color = player.color;
+            nameText.text = "Player " + (player.index + 1);
+            scoreText.text = player.score.ToString() + "/15";
+
+            nameText.color = player.color;
+            scoreText.color = player.color;
         } else {
             gameObject.SetActive(false);
         }

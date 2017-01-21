@@ -10,6 +10,7 @@ public class GameFlow : MonoBehaviour {
     public GameObject victimPrefab;
     public GameObject playerPrefab;
     public GameObject builderPrefab;
+    public List<BaseStructure> structurePrefabs;
 
     [Header("References")]
     public CameraController cameraController;
@@ -43,7 +44,10 @@ public class GameFlow : MonoBehaviour {
             SpawnVictims();
             Transform[] victimFocusGroup = victimParent.GetComponentsInChildren<Transform>().Skip(1).Include(towardsFinishTransform).ToArray();
             cameraController.Focus(victimFocusGroup);
-            while (victimParent.transform.childCount > 0) yield return null;
+
+            while (victimParent.transform.childCount > 0) {
+                yield return null;
+            }
 
             Transform[] mountainFocusGroup = mountainOverviewPointParent.GetComponentsInChildren<Transform>().Skip(1).ToArray();
             cameraController.Focus(mountainFocusGroup);
@@ -52,15 +56,27 @@ public class GameFlow : MonoBehaviour {
 
             buildModeUI.ShowBuildTime();
 
-            yield return new WaitForSeconds(2f);
-
             builderParent.gameObject.SetActive(true);
-            foreach (Transform builderChild in builderParent) {
-                Builder builder = builderChild.GetComponent<Builder>();
-                builder.numberOfPresses = builder.player.score;
+            List<Builder> builders = builderParent.GetComponentsInChildren<Builder>().ToList();
+            foreach (Builder builder in builders) {
+                builder.StructurePrefab = structurePrefabs[Random.Range(0, structurePrefabs.Count)];
                 builder.Reset();
             }
-            yield return new WaitForSeconds(10f);
+
+            cameraController.Focus(builderParent.GetComponentsInChildren<Transform>().Skip(1).ToArray());
+
+            yield return new WaitForSeconds(2f);
+
+            buildModeUI.ShowBuildOverlays(builders);
+
+            while(builders.Exists(b => b.HasBuild() == false)){
+                yield return new WaitForSeconds(1);
+            }
+
+            foreach(Builder builder in builders){
+                buildModeUI.HideBuildOverlay(builder);
+            }
+
             builderParent.gameObject.SetActive(false);
         }
     }
