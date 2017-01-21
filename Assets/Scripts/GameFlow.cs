@@ -86,9 +86,20 @@ public class GameFlow : MonoBehaviour {
 
     private void SpawnVictims() {
         const int numberOfVictims = 2;
-
         Transform[] spawnTransforms = spawnPointGroup.GetSpawnPoints(numberOfVictims * playerParent.childCount);
 
+        //Shuffle the spawns (Fisher-Yates Shuffle)
+        int m = spawnTransforms.Length;
+        while (m > 0) {
+            int i = Random.Range(0, m);
+            m -= 1;
+            //Swap
+            Transform swap = spawnTransforms[m];
+            spawnTransforms[m] = spawnTransforms[i];
+            spawnTransforms[i] = swap;
+        }
+
+        // Spawn the Victims
         for (int playerIndex = 0; playerIndex < playerParent.childCount; playerIndex++){
             Player player = playerParent.GetChild(playerIndex).GetComponent<Player>();
 

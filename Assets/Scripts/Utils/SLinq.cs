@@ -46,24 +46,22 @@ namespace SLinq
 			}
 			throw new Exception("Something horrible happend in weighted random implementation");
 		}
-		
-		public static T Random<T>(this IEnumerable<T> collection)
-		{
-			int count = collection.Count();
-			if (count == 0)
-				return default(T);
-			
-			float val = UnityEngine.Random.Range(0, count);
-			foreach (T t in collection)
-			{
-				if (val <= 0)
-					return t;
-				val -= 1;
-			}
-			throw new Exception("Something horrible happend in random implementation");
-		}
-		
-		public static IEnumerable<T> Random<T>(this IEnumerable<T> col, int numberOfItems)
+
+        public static T Random<T>(this IEnumerable<T> collection) {
+            int count = collection.Count();
+            if (count == 0)
+                return default(T);
+
+            float val = UnityEngine.Random.Range(0, count);
+            foreach (T t in collection) {
+                if (val <= 0)
+                    return t;
+                val -= 1;
+            }
+            throw new Exception("Something horrible happend in random implementation");
+        }
+
+        public static IEnumerable<T> Random<T>(this IEnumerable<T> col, int numberOfItems)
 		{
 			if (numberOfItems < 1)
 				yield break;
