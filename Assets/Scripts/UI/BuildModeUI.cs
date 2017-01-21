@@ -36,6 +36,8 @@ public class BuildModeUI : MonoBehaviour {
 
     public void HideBuildOverlay(Builder builder){
         BuildModeOverlay overlay =  overlays.FirstOrDefault(o => o.Builder == builder);
-        overlay.Hide();
+        if(overlay != null){
+            overlay.Hide();
+        }
     }
 }
