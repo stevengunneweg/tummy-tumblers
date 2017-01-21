@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: TreeMaterial
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: ff929c1cb3cfb45dfa54f3860716d2cf, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -121,7 +121,13 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.20588233, g: 0.5147059, b: 0.12867647, a: 1}
+      second: {r: 0.22422145, g: 0.5294118, b: 0.1479239, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _ObjectColor
+      second: {r: 0.015138397, g: 0.41176468, b: 0.26353064, a: 1}
+    - first:
+        name: _RimColor
+      second: {r: 0.035034597, g: 0.5955882, b: 0.31724432, a: 1}
