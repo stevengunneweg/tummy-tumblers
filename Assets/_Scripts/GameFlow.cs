@@ -48,6 +48,7 @@ public class GameFlow : MonoBehaviour {
             for(int i = 0; i < currentVictimAmount; i++){
                 Victim victim = Instantiate(victimPrefab);
                 victim.Player = player;
+                victim.transform.parent = transform;
                 victim.transform.position = victimSpawnPoint.position;
                 victim.transform.position += new Vector3((-currentVictimAmount * Players.Count / 2) * victim.Width + ballPosition * victim.Width, 0, 0);
                 victim.OnVictimKill += OnVictimKilled;
