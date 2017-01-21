@@ -88,6 +88,11 @@ public class GameFlow : MonoBehaviour {
 
         Transform[] spawnTransforms = spawnPointGroup.GetSpawnPoints(numberOfVictims * playerParent.childCount);
 
+		List<List<int>> randomOrders = new List<List<int>>(numberOfVictims);
+		for (int i = 0; i < numberOfVictims; i++) {
+			randomOrders.Add (GetRandomSpawnArray());
+		}
+
         for (int playerIndex = 0; playerIndex < playerParent.childCount; playerIndex++){
             Player player = playerParent.GetChild(playerIndex).GetComponent<Player>();
 
@@ -95,7 +100,12 @@ public class GameFlow : MonoBehaviour {
                 GameObject victimInstance = Instantiate(victimPrefab);
                 victimInstance.name = victimPrefab.name + " (From player " + player.index.ToString("00") + ")";
                 victimInstance.transform.parent = victimParent;
-                victimInstance.transform.position = spawnTransforms[playerIndex * numberOfVictims + victimIndex].position;
+
+				Debug.Log ("aap" + playerIndex + "_" + victimIndex + "_" + numberOfVictims);
+
+				victimInstance.transform.position = spawnTransforms[randomOrders[victimIndex][playerIndex] * numberOfVictims + victimIndex].position;
+				victimInstance.transform.position += Vector3.forward * UnityEngine.Random.Range (0, 3);
+				victimInstance.transform.position += Vector3.up * UnityEngine.Random.Range (0, 5);
 
                 Victim victim = victimInstance.GetComponent<Victim>();
                 victim.player = player;
@@ -103,5 +113,16 @@ public class GameFlow : MonoBehaviour {
             }
         }
     }
+
+	private List<int> GetRandomSpawnArray() {
+		List<int> randomOrder = new List<int>{0, 1, 2, 3};
+		for (int i = 0; i < randomOrder.Count; i++) {
+			int temp = randomOrder [i];
+			int randomIndex = UnityEngine.Random.Range (i, randomOrder.Count);
+			randomOrder [i] = randomOrder [randomIndex];
+			randomOrder [randomIndex] = temp;
+		}
+		return randomOrder;
+	}
 
 }
