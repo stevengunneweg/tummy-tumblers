@@ -5,6 +5,9 @@ using System;
 
 public class Victim : MonoBehaviour {
 
+	public List<AudioClip> soundsMale;	
+	public List<AudioClip> soundsFemale;
+    
     [HideInInspector]
     public Player player;
     [HideInInspector]
@@ -13,6 +16,7 @@ public class Victim : MonoBehaviour {
 
     private const string deadzoneTag = "Deadzone";
     private const string finishTag = "Finish";
+	private bool gender;
 
     [Header("Destroy")]
     public float destroyDuration = 1f;
@@ -36,7 +40,20 @@ public class Victim : MonoBehaviour {
         }
     }
 
+	protected void Start() {
+		this.gender = UnityEngine.Random.value <= 0.5f;
+	}
+
     private void OnCollisionEnter(Collision collision) {
+		if (collision.collider.gameObject.layer != LayerMask.NameToLayer ("Mountain")) {
+			if (this.gender) {
+				GetComponent<AudioSource>().clip = this.soundsMale[UnityEngine.Random.Range(0, this.soundsMale.Count)];
+			} else {
+				GetComponent<AudioSource>().clip = this.soundsFemale[UnityEngine.Random.Range(0, this.soundsFemale.Count)];
+			}
+			GetComponent<AudioSource> ().Play ();
+		}
+
 		if (collision.collider.gameObject.layer == LayerMask.NameToLayer ("Victims")) {
 			Rigidbody objectBody = collision.collider.gameObject.GetComponent<Rigidbody> ();
 			collisionVector = objectBody.transform.position - transform.position;
