@@ -148,15 +148,15 @@ public class Mountain : MonoBehaviour {
         }
     }
 
-    [SerializeField, Header("Generator")]
-    private Generator generator;
+    [Header("Generator")]
+    public Generator generator;
 
-    private MeshFilter meshFilter {
+    public MeshFilter meshFilter {
         get {
             return GetComponent<MeshFilter>();
         }
     }
-    private MeshCollider meshCollider {
+    public MeshCollider meshCollider {
         get {
             return GetComponent<MeshCollider>();
         }
@@ -167,6 +167,8 @@ public class Mountain : MonoBehaviour {
         Mesh mesh = generator.GenerateMesh();
         meshFilter.sharedMesh = mesh;
         meshCollider.sharedMesh = mesh;
+
+        UpdateMountainSide();
     }
     #endregion
 
@@ -175,6 +177,8 @@ public class Mountain : MonoBehaviour {
         Mesh mesh = MeshUtils.CloneMesh(meshFilter.sharedMesh);
         meshFilter.sharedMesh = mesh;
         meshCollider.sharedMesh = mesh;
+
+        UpdateMountainSide();
     }
 
     public void Increase(Vector3 worldPoint, float globalRadius, AnimationCurve falloffCurve, float amount) {
@@ -212,6 +216,8 @@ public class Mountain : MonoBehaviour {
         mesh.RecalculateBounds();
         mesh.RecalculateNormals();
         meshCollider.sharedMesh = mesh;
+
+        UpdateMountainSide();
     }
 
     [ContextMenu("Smooth (might take some time!)")]
@@ -228,6 +234,12 @@ public class Mountain : MonoBehaviour {
         for (int i = 0; i < iterations; i++)
             //workingMesh.vertices = SmoothFilter.laplacianFilter(workingMesh.vertices, workingMesh.triangles);
             sourceMesh.vertices = SmoothFilter.hcFilter(workingMesh.vertices, sourceMesh.vertices, workingMesh.triangles, 0.0f, 0.5f);
+
+        UpdateMountainSide();
     }
 
+    [ContextMenu("Update Mountain Side")]
+    public void UpdateMountainSide() {
+        GetComponentInChildren<MountainSide>().Regenerate();
+    }
 }

@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MountainMaterial
-  m_Shader: {fileID: 4800000, guid: d98ac3aa608a64a2aac3d0c67b4c0e37, type: 3}
+  m_Name: grass
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -43,19 +43,13 @@ Material:
         name: _EmissionMap
       second:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Grid
-      second:
-        m_Texture: {fileID: 2800000, guid: b8280de85b7804ad2a856a7ad1f159d1, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 400, y: 400}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 2fa6ab4483eecdf498b8ae121c942de9, type: 3}
+        m_Scale: {x: 400, y: 400}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MetallicGlossMap
@@ -98,9 +92,6 @@ Material:
         name: _GlossyReflections
       second: 1
     - first:
-        name: _GridOpacitym
-      second: 0.1
-    - first:
         name: _Metallic
       second: 0
     - first:
@@ -127,22 +118,10 @@ Material:
     - first:
         name: _ZWrite
       second: 1
-    - first:
-        name: _node_2869
-      second: 0.09
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.21448958, g: 0.6397059, b: 0.108185545, a: 1}
+      second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
-    - first:
-        name: _GrassColor
-      second: {r: 0.5808823, g: 0.50995106, b: 0.21355967, a: 1}
-    - first:
-        name: _GridColor
-      second: {r: 0, g: 0.259, b: 1, a: 0.584}
-    - first:
-        name: _HillColor
-      second: {r: 0.5147059, g: 0.4414151, b: 0.3103374, a: 1}
