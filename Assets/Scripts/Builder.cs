@@ -10,6 +10,8 @@ public class Builder : MonoBehaviour {
 	[SerializeField]
 	private GameObject _jumpPrefab;
 
+	private bool _buildingAllowed = false;
+
     public Player player;
     public Mountain mountain;
     public float moveSpeed = 1f;
@@ -50,14 +52,38 @@ public class Builder : MonoBehaviour {
         float yValue = Input.GetAxis(yAxis);
         if (Input.GetAxis(arrowYAxis) >= 0.07f || Input.GetAxis(arrowYAxis) <= -0.07f)
             yValue = -Input.GetAxis(arrowYAxis);
-        
-        transform.position += transform.right * -xvalue * moveSpeed;
-        transform.position += transform.forward * yValue * moveSpeed;
 
-        if (Input.GetButtonDown (aButton) || (player.index == 0 && Input.GetKeyDown(KeyCode.Space))) {
+        if (xvalue > 0.02 || xvalue < -0.02)
+            transform.position += transform.right * -xvalue * moveSpeed;
+        if (yValue > 0.02 || yValue < -0.02)
+            transform.position += transform.forward * yValue * moveSpeed;
+
+		if (Input.GetButtonDown (aButton) || (player.index == 0 && Input.GetKeyDown(KeyCode.Space)) && _buildingAllowed) {
             BuildStructure();
         }
     }
+
+
+	protected void FixedUpdate() {
+		if (player == null)
+			return;
+
+		if(tempPrefab == null){
+			return;
+		}
+
+		BaseStructure[] structures = FindObjectsOfType<BaseStructure>();
+		bool canBuild = true;
+		for (int i = 0; i < structures.Count (); i++) {
+			if (tempPrefab != structures [i]) {
+				if (tempPrefab.GetComponent<Collider> ().bounds.Intersects (structures [i].GetComponent<Collider> ().bounds)) {
+					canBuild = false;
+				}
+			}
+		}
+		tempPrefab.SetBlocked (!canBuild);
+		_buildingAllowed = canBuild;
+	}
 
     public bool HasBuild(){
         return tempPrefab == null;
