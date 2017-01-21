@@ -7,6 +7,8 @@ public class Victim : MonoBehaviour {
 
 	public List<AudioClip> soundsMale;	
 	public List<AudioClip> soundsFemale;
+	public AudioClip soundScreamMale;	
+	public AudioClip soundScreamFemale;
     
     [HideInInspector]
     public Player player;
@@ -19,6 +21,7 @@ public class Victim : MonoBehaviour {
     private const string deadzoneTag = "Deadzone";
     private const string finishTag = "Finish";
 	private bool gender;
+	private bool isFalling;
 
     [Header("Destroy")]
     public float destroyDuration = 1f;
@@ -26,6 +29,20 @@ public class Victim : MonoBehaviour {
     private float _currentDestoryTime;
     
     protected void Update() {
+		if (GetComponent<Rigidbody> ().velocity.y < -8) {
+			if (!this.isFalling) {
+				this.isFalling = true;
+				if (this.gender) {
+					GetComponent<AudioSource> ().clip = soundScreamMale;
+				} else {
+					GetComponent<AudioSource> ().clip = soundScreamFemale;
+				}
+				GetComponent<AudioSource> ().Play ();
+			}
+		} else {
+			this.isFalling = false;
+		}
+
         // Find current and oldest position in Mountain space
         Tracker tracker = GetComponent<Tracker>();
         Vector3 oldestPosition = mountain.transform.InverseTransformPoint(tracker.GetOldestTrackedPosition());
