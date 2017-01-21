@@ -1,10 +1,14 @@
 fileFormatVersion: 2
 guid: b71b0f4799df6a24e8c706a28d3729be
-timeCreated: 1484986005
+timeCreated: 1485006705
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _minePrefab: {instanceID: 0}
+  - _jumpPrefab: {instanceID: 0}
+  - player: {instanceID: 0}
+  - mountain: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

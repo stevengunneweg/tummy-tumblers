@@ -164,6 +164,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b71b0f4799df6a24e8c706a28d3729be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minePrefab: {fileID: 1050725188647426, guid: ea8ee15cab38f4edfa56d83891cfa3da,
+    type: 2}
+  _jumpPrefab: {fileID: 1278629007822984, guid: 1d0d63ce8c0d044e79ca37545601cca6,
+    type: 2}
   player: {fileID: 0}
   mountain: {fileID: 0}
   moveSpeed: 1
