@@ -48,4 +48,17 @@ public abstract class BaseStructure : MonoBehaviour {
             Debug.Log("visualrender has no child");
         }
     }
+
+	public void SetBlocked(bool isBlocked) {
+		visualRenderer.material = editMaterial;
+		if (visualRenderer.transform.childCount > 0) {
+			for (int i = 0; i < visualRenderer.transform.childCount; i++) {
+				if (isBlocked) {
+					visualRenderer.transform.GetChild (i).GetComponent<MeshRenderer> ().material.SetColor("_ObjectColor", Color.red);
+				} else {
+					visualRenderer.transform.GetChild (i).GetComponent<MeshRenderer> ().material.SetColor("_ObjectColor", Color.green);
+				}
+			}
+		}
+	}
 }
