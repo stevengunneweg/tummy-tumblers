@@ -48,14 +48,14 @@ public class CameraController : MonoBehaviour {
         }
 
         // Grow
-        if (maxDiff > 0.7f) {
+        if (maxDiff > 0.4f) {
             transform.position -= transform.forward * growSpeed * Time.deltaTime;
         } else if (minDiff < 0.2f) {
             transform.position += transform.forward * growSpeed * Time.deltaTime;
         }
     }
 
-    public void Focus(Transform parent) {
-        focus = parent.GetComponentsInChildren<Transform>().Skip(1).ToArray();
+    public void Focus(Transform[] focus) {
+        this.focus = focus;
     }
 }

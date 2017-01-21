@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using SLinq;
 
 public class GameFlow : MonoBehaviour {
     
@@ -12,6 +13,7 @@ public class GameFlow : MonoBehaviour {
     [Header("References")]
     public CameraController cameraController;
     public SpawnPointGroup spawnPointGroup;
+    public Transform towardsFinishTransform;
     public Transform victimParent;
     public Transform playerParent;
     public Transform mountainOverviewPointParent;
@@ -34,11 +36,13 @@ public class GameFlow : MonoBehaviour {
         // Start the game
         while (true) {
             SpawnVictims();
-            cameraController.Focus(victimParent);
+            Transform[] victimFocusGroup = victimParent.GetComponentsInChildren<Transform>().Skip(1).Include(towardsFinishTransform).ToArray();
+            cameraController.Focus(victimFocusGroup);
             while (victimParent.transform.childCount > 0) yield return null;
 
-            cameraController.Focus(mountainOverviewPointParent);
-            yield return new WaitForSeconds(3f);
+            Transform[] mountainFocusGroup = mountainOverviewPointParent.GetComponentsInChildren<Transform>().Skip(1).ToArray();
+            cameraController.Focus(mountainFocusGroup);
+            yield return new WaitForSeconds(5f);
 
             // TODO add build round here
         }

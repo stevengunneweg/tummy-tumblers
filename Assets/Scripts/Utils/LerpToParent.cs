@@ -12,7 +12,8 @@ public class LerpToParent : MonoBehaviour {
     }
 
 	protected void LateUpdate() {
-        transform.position = Vector3.MoveTowards(lastPosition, transform.parent.position, speed * Time.deltaTime);
+        transform.position = Vector3.Lerp(lastPosition, transform.parent.position, Time.deltaTime * speed); 
+        //Vector3.MoveTowards(lastPosition, transform.parent.position, speed * Time.deltaTime);
         lastPosition = transform.position;
     }
 }
