@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 48674c76d64d82246ab37ee26b0d1e51
-timeCreated: 1485021222
+guid: e282aa8281655844c8f880d43d1651fe
+timeCreated: 1485026604
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Wall001
+    4300000: Mountain
   materials:
     importMaterials: 1
     materialName: 0
@@ -34,7 +34,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 100
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

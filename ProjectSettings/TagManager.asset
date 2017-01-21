@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Deadzone
   - FxTemporaire
+  - Effects
   layers:
   - Default
   - TransparentFX

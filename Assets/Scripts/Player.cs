@@ -24,6 +24,6 @@ public class Player : MonoBehaviour {
     }
 
     public static readonly Color[] COLORS = new Color[]{
-        Color.red, Color.yellow, Color.green, Color.blue
+		Color.red, new Color(1, 0.5f, 0), Color.green, Color.blue
     };
 }
