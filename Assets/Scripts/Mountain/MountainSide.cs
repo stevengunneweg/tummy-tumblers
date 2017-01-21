@@ -18,6 +18,12 @@ public class MountainSide : MonoBehaviour {
         }
     }
 
+    public MeshCollider meshCollider {
+        get {
+            return GetComponent<MeshCollider>();
+        }
+    }
+
     public int sideWidth = 12;
     public AnimationCurve sideCurve;
     public float baseY = -5f;
@@ -109,5 +115,6 @@ public class MountainSide : MonoBehaviour {
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
         meshFilter.sharedMesh = mesh;
+        meshCollider.sharedMesh = mesh;
     }
 }
