@@ -54,7 +54,7 @@ public class GameFlow : MonoBehaviour {
                 builder.numberOfPresses = builder.player.score;
                 builder.Reset();
             }
-            yield return new WaitForSeconds(1000f);
+            yield return new WaitForSeconds(10f);
             builderParent.gameObject.SetActive(false);
         }
     }
