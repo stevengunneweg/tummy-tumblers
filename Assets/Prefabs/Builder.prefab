@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a30089e53df52ed4c9031926c01a8c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alignRotation: 0
   debugColor: {r: 1, g: 1, b: 0, a: 1}
 --- !u!114 &114777524735004690
 MonoBehaviour:
@@ -170,7 +171,7 @@ MonoBehaviour:
     type: 2}
   player: {fileID: 0}
   mountain: {fileID: 0}
-  moveSpeed: 1
+  moveSpeed: 4
   radius: 3
   impact: 0.5
   impactCurve:

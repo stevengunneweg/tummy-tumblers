@@ -415,6 +415,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f1045c3f8f8046d8a2e9426a665d393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  editMaterial: {fileID: 2100000, guid: d2b75e00d888945a1ac59969b826c858, type: 2}
+  visualRenderer: {fileID: 23268054971133312}
   visualGameObject: {fileID: 1080874442466602}
   shockParticles: {fileID: 198900068445015876}
 --- !u!136 &136637552206174940
