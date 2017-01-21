@@ -102,11 +102,9 @@ public class GameFlow : MonoBehaviour {
                 victimInstance.name = victimPrefab.name + " (From player " + player.index.ToString("00") + ")";
                 victimInstance.transform.parent = victimParent;
 
-				Debug.Log ("aap" + playerIndex + "_" + victimIndex + "_" + numberOfVictims);
-
 				victimInstance.transform.position = spawnTransforms[randomOrders[victimIndex][playerIndex] * numberOfVictims + victimIndex].position;
-				victimInstance.transform.position += Vector3.forward * UnityEngine.Random.Range (0, 3);
-				victimInstance.transform.position += Vector3.up * UnityEngine.Random.Range (0, 5);
+				victimInstance.transform.position += Vector3.forward * Random.Range (0, 3);
+				victimInstance.transform.position += Vector3.up * Random.Range (0, 5);
 
                 Victim victim = victimInstance.GetComponent<Victim>();
                 victim.player = player;
@@ -120,7 +118,7 @@ public class GameFlow : MonoBehaviour {
 		List<int> randomOrder = new List<int>{0, 1, 2, 3};
 		for (int i = 0; i < randomOrder.Count; i++) {
 			int temp = randomOrder [i];
-			int randomIndex = UnityEngine.Random.Range (i, randomOrder.Count);
+			int randomIndex = Random.Range (i, randomOrder.Count);
 			randomOrder [i] = randomOrder [randomIndex];
 			randomOrder [randomIndex] = temp;
 		}
