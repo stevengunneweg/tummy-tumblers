@@ -142,7 +142,7 @@ Material:
       second: {r: 0.5808823, g: 0.50995106, b: 0.21355967, a: 1}
     - first:
         name: _GridColor
-      second: {r: 0, g: 0.259, b: 1, a: 0.584}
+      second: {r: 0.16176468, g: 0.033304486, b: 0.04463922, a: 1}
     - first:
         name: _HillColor
       second: {r: 0.5147059, g: 0.4414151, b: 0.3103374, a: 1}
