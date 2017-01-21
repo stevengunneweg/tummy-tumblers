@@ -13,6 +13,9 @@ public class CameraController : MonoBehaviour {
     public float growSpeed = 5f;
 
     protected void Update() {
+        if (focus == null || focus.Length == 0)
+            return;
+
         // Calculate Min and Max values
         float minX = float.MaxValue, minY = float.MaxValue, maxX = float.MinValue, maxY = float.MinValue;
         foreach (var t in focus.Where(t => t != null)) {

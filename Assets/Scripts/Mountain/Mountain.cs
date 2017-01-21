@@ -5,6 +5,10 @@ using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshCollider))]
 public class Mountain : MonoBehaviour {
+    
+    private Mesh originalMountainMesh;
+    public AnimationCurve diffFromOriginalCurve;
+    public float diffMaximum = 2f;
 
     #region Generator
     [System.Serializable]
@@ -42,6 +46,10 @@ public class Mountain : MonoBehaviour {
 
             int x = Mathf.RoundToInt(xT * width);
             int y = Mathf.RoundToInt(yT * length);
+
+            // Clamp to the mesh
+            x = Math.Max(0, Mathf.Min(width - 1, x));
+            y = Math.Max(0, Mathf.Min(length - 1, y));
 
             return XYToIndex(x, y);
         }
@@ -160,9 +168,10 @@ public class Mountain : MonoBehaviour {
         meshCollider.sharedMesh = mesh;
     }
     #endregion
-    
+
     protected void Start() {
-        Mesh mesh = MeshUtils.CloneMesh(meshFilter.mesh);
+        originalMountainMesh = meshFilter.sharedMesh;
+        Mesh mesh = MeshUtils.CloneMesh(meshFilter.sharedMesh);
         meshFilter.sharedMesh = mesh;
         meshCollider.sharedMesh = mesh;
     }
@@ -181,9 +190,18 @@ public class Mountain : MonoBehaviour {
             if (usedIndices.ContainsKey(index))
                 continue;
 
+            // Calculate new height
             float sqrDistanceToCenter = (new Vector2(vertices[index].x, vertices[index].z) - new Vector2(vertices[centerVertexIndex].x, vertices[centerVertexIndex].z)).sqrMagnitude;
             float distanceT = sqrDistanceToCenter / (localRadius * localRadius);
             vertices[index].y += amount * falloffCurve.Evaluate(1 - distanceT);
+
+            // Limit max height differene
+            float originalHeight = originalMountainMesh.vertices[index].y;
+            float deltaLength = generator.IndexToY(index) / (float)generator.length;
+            float diffAtThisDelta = diffMaximum * diffFromOriginalCurve.Evaluate(deltaLength);
+            vertices[index].y = Mathf.Max(originalHeight - diffAtThisDelta, Mathf.Min(originalHeight + diffAtThisDelta, vertices[index].y));
+
+            // Cache that this index is now already changed
             usedIndices.Add(index, true);
         }
 
@@ -208,4 +226,5 @@ public class Mountain : MonoBehaviour {
             //workingMesh.vertices = SmoothFilter.laplacianFilter(workingMesh.vertices, workingMesh.triangles);
             sourceMesh.vertices = SmoothFilter.hcFilter(workingMesh.vertices, sourceMesh.vertices, workingMesh.triangles, 0.0f, 0.5f);
     }
+
 }
