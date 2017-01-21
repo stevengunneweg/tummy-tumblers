@@ -25,10 +25,10 @@ public class AlignToMountain : MonoBehaviour {
     public void OnDrawGizmos() {
         if (lastHit != null) { 
             Gizmos.color = debugColor;
-            Gizmos.DrawSphere(lastHit.Value, 0.3f);
+            Gizmos.DrawSphere(lastHit.Value, 0.1f);
         } else {
             Gizmos.color = Color.gray;
-            Gizmos.DrawSphere(transform.position, 0.3f);
+            Gizmos.DrawSphere(transform.position, 0.1f);
         }
     }
 

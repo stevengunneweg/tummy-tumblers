@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class PlayerControls : MonoBehaviour {
+public class MenuPlayerControls : MonoBehaviour {
 
     private Player _player;
     private Rigidbody _rigidBody;
 
     public float speed = 15;
     private int _index = 0;
+
     protected void Start () {
         _rigidBody = GetComponent<Rigidbody>();
-        _player = GetComponent<Victim>().player;
-        _index = GetComponent<Victim>().index;
+        _player = GetComponent<MenuVictim>().player;
+        _index = GetComponent<MenuVictim>().index;
     }
     
     protected void Update()
@@ -28,7 +29,8 @@ public class PlayerControls : MonoBehaviour {
                 _rigidBody.AddForce((Vector3.left * speed) * (_rigidBody.velocity.x- (-Vector3.left * speed).x));
 
 			if ((Input.GetButtonDown(_prefix + "_LTClick") && this._index == 0) || (Input.GetButtonDown(_prefix + "_RTClick") && this._index == 1)) {
-				Effects.instance.Do(Effects.EffectType.PlayerDetect, transform.position, Quaternion.identity, this.transform);
+				Effects effects = GameObject.FindGameObjectsWithTag("Effects").Where(g => g.GetComponent<Effects>() != null).Select(g => g.GetComponent<Effects>()).FirstOrDefault();
+				effects.Do(Effects.EffectType.PlayerDetect, transform.position, Quaternion.identity, this.transform);
 			}
         }
     }

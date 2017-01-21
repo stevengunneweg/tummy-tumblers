@@ -52,9 +52,11 @@ public class Builder : MonoBehaviour {
         float yValue = Input.GetAxis(yAxis);
         if (Input.GetAxis(arrowYAxis) >= 0.07f || Input.GetAxis(arrowYAxis) <= -0.07f)
             yValue = -Input.GetAxis(arrowYAxis);
-        
-        transform.position += transform.right * -xvalue * moveSpeed;
-        transform.position += transform.forward * yValue * moveSpeed;
+
+        if (xvalue > 0.02 || xvalue < -0.02)
+            transform.position += transform.right * -xvalue * moveSpeed;
+        if (yValue > 0.02 || yValue < -0.02)
+            transform.position += transform.forward * yValue * moveSpeed;
 
 		if (Input.GetButtonDown (aButton) || (player.index == 0 && Input.GetKeyDown(KeyCode.Space)) && _buildingAllowed) {
             BuildStructure();
@@ -93,7 +95,11 @@ public class Builder : MonoBehaviour {
         Destroy(tempPrefab.gameObject);
         tempPrefab = null;
 
-        BuildModeOverlay overlay = FindObjectsOfType<BuildModeOverlay>().First(b => b.Builder == this);
-        overlay.Hide();
+        BuildModeOverlay overlay = FindObjectsOfType<BuildModeOverlay>().FirstOrDefault(b => b.Builder == this);
+        if (overlay != null) {
+            overlay.Hide();
+        } else {
+            Debug.Log("Cannot find overlay for the builder!", this);
+        }
     }
 }
