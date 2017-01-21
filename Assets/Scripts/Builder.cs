@@ -50,9 +50,11 @@ public class Builder : MonoBehaviour {
         float yValue = Input.GetAxis(yAxis);
         if (Input.GetAxis(arrowYAxis) >= 0.07f || Input.GetAxis(arrowYAxis) <= -0.07f)
             yValue = -Input.GetAxis(arrowYAxis);
-        
-        transform.position += transform.right * -xvalue * moveSpeed;
-        transform.position += transform.forward * yValue * moveSpeed;
+
+        if (xvalue > 0.01 || xvalue < -0.01)
+            transform.position += transform.right * -xvalue * moveSpeed;
+        if (yValue > 0.01 || yValue < -0.01)
+            transform.position += transform.forward * yValue * moveSpeed;
 
         if (Input.GetButtonDown (aButton) || (player.index == 0 && Input.GetKeyDown(KeyCode.Space))) {
             BuildStructure();
