@@ -16,7 +16,8 @@ public class MoleStructure : BaseStructure {
         particlesGameObject.SetActive(true);
         visualGameObject.SetActive(false);
 
-        victim.GetComponent<Rigidbody>().AddForce(collision.impulse * 2, ForceMode.VelocityChange);
+        Vector3 shock = (collision.impulse * 2).normalized * 15f;
+        victim.GetComponent<Rigidbody>().AddForce(shock, ForceMode.VelocityChange);
 
         Destroy(gameObject, 1.5f);
         Destroy(victim.gameObject, 1f);
