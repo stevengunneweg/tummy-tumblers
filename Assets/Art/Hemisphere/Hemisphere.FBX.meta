@@ -1,51 +1,15 @@
 fileFormatVersion: 2
-guid: 534b9c1886bad334096a8191ade1db5d
-timeCreated: 1485005897
+guid: 9d10ac364c5074b699b9eef96eae63b9
+timeCreated: 1485008244
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: CATRigClavicle
-    100002: CATRigHub002
-    100004: CATRigLArm1
-    100006: CATRigLArmCollarbone
-    100008: CATRigLArmPalm
-    100010: CATRigLLeg1
-    100012: CATRigLLegAnkle
-    100014: CATRigPelvis
-    100016: CATRigRArm1
-    100018: CATRigRArmCollarbone
-    100020: CATRigRArmPalm
-    100022: CATRigRLeg1
-    100024: CATRigRLegAnkle
-    100026: CATRigSpine
-    100028: Character002
-    100030: Sphere003
-    100032: //RootNode
-    100034: Victim
-    400000: CATRigClavicle
-    400002: CATRigHub002
-    400004: CATRigLArm1
-    400006: CATRigLArmCollarbone
-    400008: CATRigLArmPalm
-    400010: CATRigLLeg1
-    400012: CATRigLLegAnkle
-    400014: CATRigPelvis
-    400016: CATRigRArm1
-    400018: CATRigRArmCollarbone
-    400020: CATRigRArmPalm
-    400022: CATRigRLeg1
-    400024: CATRigRLegAnkle
-    400026: CATRigSpine
-    400028: Character002
-    400030: Sphere003
-    400032: //RootNode
-    400034: Victim
-    4300000: Sphere003
-    4300002: Victim
-    9500000: //RootNode
-    13700000: Sphere003
-    13700002: Victim
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Hemisphere
   materials:
     importMaterials: 1
     materialName: 0
@@ -108,7 +72,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: FaceMaterial
-  m_Shader: {fileID: 4800000, guid: 931d061e219604c3d9c361922dd2f754, type: 3}
+  m_Name: SkyMaterial
+  m_Shader: {fileID: 4800000, guid: 0b109509d3ff04284b98e395a420f9e6, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -48,7 +48,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: ac935092dad42684f91d98eda303eb02, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -118,13 +118,22 @@ Material:
     - first:
         name: _ZWrite
       second: 1
+    - first:
+        name: _node_7271
+      second: 0.4710928
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+      second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
-        name: _ObjectColor
+        name: _LowerColor
+      second: {r: 0.27951992, g: 0.5208358, b: 0.6911765, a: 1}
+    - first:
+        name: _SkyColor
+      second: {r: 0.6838235, g: 0.9084178, b: 1, a: 1}
+    - first:
+        name: _UpperColor
       second: {r: 1, g: 1, b: 1, a: 1}
