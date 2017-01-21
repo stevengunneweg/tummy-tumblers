@@ -51,9 +51,9 @@ public class Builder : MonoBehaviour {
         if (Input.GetAxis(arrowYAxis) >= 0.07f || Input.GetAxis(arrowYAxis) <= -0.07f)
             yValue = -Input.GetAxis(arrowYAxis);
 
-        if (xvalue > 0.01 || xvalue < -0.01)
+        if (xvalue > 0.02 || xvalue < -0.02)
             transform.position += transform.right * -xvalue * moveSpeed;
-        if (yValue > 0.01 || yValue < -0.01)
+        if (yValue > 0.02 || yValue < -0.02)
             transform.position += transform.forward * yValue * moveSpeed;
 
         if (Input.GetButtonDown (aButton) || (player.index == 0 && Input.GetKeyDown(KeyCode.Space))) {
