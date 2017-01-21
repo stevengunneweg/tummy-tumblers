@@ -21,11 +21,15 @@ public class GameFlow : MonoBehaviour {
     private float currentVictimAmount;
     private float victimsAlive;
 
+    private Color[] playerColors = new Color[]{
+        Color.red, Color.yellow, Color.green, Color.blue
+    };
+
     private void Awake(){
         Players = new List<Player>();
-        Players.Add(new Player(0, Color.red));
-        Players.Add(new Player(1, Color.yellow));
-        Players.Add(new Player(2, Color.green));
+        for(int i = 0; i < 4; i++){
+            Players.Add(new Player(0, playerColors[i]));
+        }
     }
 
     private void Start(){
