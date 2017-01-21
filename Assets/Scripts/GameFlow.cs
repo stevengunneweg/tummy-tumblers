@@ -76,6 +76,7 @@ public class GameFlow : MonoBehaviour {
             GameObject builderInstance = Instantiate(builderPrefab);
             builderInstance.name = builderPrefab.name + " (Player " + i.ToString("00") + ")";
             builderInstance.transform.parent = builderParent;
+            builderInstance.transform.localPosition = Vector3.zero;
 
             Builder builder = builderInstance.GetComponent<Builder>();
             builder.player = player;
@@ -85,7 +86,6 @@ public class GameFlow : MonoBehaviour {
 
     private void SpawnVictims() {
         const int numberOfVictims = 2;
-
         Transform[] spawnTransforms = spawnPointGroup.GetSpawnPoints(numberOfVictims * playerParent.childCount);
 
 		List<List<int>> randomOrders = new List<List<int>>(numberOfVictims);
@@ -93,6 +93,7 @@ public class GameFlow : MonoBehaviour {
 			randomOrders.Add (GetRandomSpawnArray());
 		}
 
+        // Spawn the Victims
         for (int playerIndex = 0; playerIndex < playerParent.childCount; playerIndex++){
             Player player = playerParent.GetChild(playerIndex).GetComponent<Player>();
 
@@ -110,6 +111,7 @@ public class GameFlow : MonoBehaviour {
                 Victim victim = victimInstance.GetComponent<Victim>();
                 victim.player = player;
                 victim.mountain = mountain;
+                victim.index = victimIndex;
             }
         }
     }
