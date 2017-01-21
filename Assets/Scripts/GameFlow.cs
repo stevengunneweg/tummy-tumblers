@@ -137,7 +137,10 @@ public class GameFlow : MonoBehaviour {
     }
 
 	private List<int> GetRandomSpawnArray() {
-		List<int> randomOrder = new List<int>{0, 1, 2, 3};
+		List<int> randomOrder = new List<int>(new int[this.amountOfPlayers]);
+		for (int i = 0; i < randomOrder.Count; i++) {
+			randomOrder [i] = i;
+		}
 		for (int i = 0; i < randomOrder.Count; i++) {
 			int temp = randomOrder [i];
 			int randomIndex = UnityEngine.Random.Range (i, randomOrder.Count);
