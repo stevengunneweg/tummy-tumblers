@@ -143,6 +143,7 @@ public class Mountain : MonoBehaviour {
             mesh.uv = uv;
             mesh.normals = normals;
             mesh.RecalculateBounds();
+            mesh.RecalculateNormals();
             return mesh;
         }
     }
@@ -196,10 +197,12 @@ public class Mountain : MonoBehaviour {
             vertices[index].y += amount * falloffCurve.Evaluate(1 - distanceT);
 
             // Limit max height differene
-            float originalHeight = originalMountainMesh.vertices[index].y;
-            float deltaLength = generator.IndexToY(index) / (float)generator.length;
-            float diffAtThisDelta = diffMaximum * diffFromOriginalCurve.Evaluate(deltaLength);
-            vertices[index].y = Mathf.Max(originalHeight - diffAtThisDelta, Mathf.Min(originalHeight + diffAtThisDelta, vertices[index].y));
+            if (originalMountainMesh != null) {
+                float originalHeight = originalMountainMesh.vertices[index].y;
+                float deltaLength = generator.IndexToY(index) / (float)generator.length;
+                float diffAtThisDelta = diffMaximum * diffFromOriginalCurve.Evaluate(deltaLength);
+                vertices[index].y = Mathf.Max(originalHeight - diffAtThisDelta, Mathf.Min(originalHeight + diffAtThisDelta, vertices[index].y));
+            }
 
             // Cache that this index is now already changed
             usedIndices.Add(index, true);

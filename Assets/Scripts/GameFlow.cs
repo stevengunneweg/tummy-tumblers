@@ -54,7 +54,7 @@ public class GameFlow : MonoBehaviour {
                 builder.numberOfPresses = builder.player.score;
                 builder.Reset();
             }
-            yield return new WaitForSeconds(1000f);
+            yield return new WaitForSeconds(10f);
             builderParent.gameObject.SetActive(false);
         }
     }
@@ -76,6 +76,7 @@ public class GameFlow : MonoBehaviour {
             GameObject builderInstance = Instantiate(builderPrefab);
             builderInstance.name = builderPrefab.name + " (Player " + i.ToString("00") + ")";
             builderInstance.transform.parent = builderParent;
+            builderInstance.transform.localPosition = Vector3.zero;
 
             Builder builder = builderInstance.GetComponent<Builder>();
             builder.player = player;
@@ -85,9 +86,20 @@ public class GameFlow : MonoBehaviour {
 
     private void SpawnVictims() {
         const int numberOfVictims = 2;
-
         Transform[] spawnTransforms = spawnPointGroup.GetSpawnPoints(numberOfVictims * playerParent.childCount);
 
+        //Shuffle the spawns (Fisher-Yates Shuffle)
+        int m = spawnTransforms.Length;
+        while (m > 0) {
+            int i = Random.Range(0, m);
+            m -= 1;
+            //Swap
+            Transform swap = spawnTransforms[m];
+            spawnTransforms[m] = spawnTransforms[i];
+            spawnTransforms[i] = swap;
+        }
+
+        // Spawn the Victims
         for (int playerIndex = 0; playerIndex < playerParent.childCount; playerIndex++){
             Player player = playerParent.GetChild(playerIndex).GetComponent<Player>();
 
@@ -99,6 +111,7 @@ public class GameFlow : MonoBehaviour {
 
                 Victim victim = victimInstance.GetComponent<Victim>();
                 victim.player = player;
+                victim.mountain = mountain;
             }
         }
     }
