@@ -96,7 +96,7 @@ Material:
       second: 0
     - first:
         name: _FogScale
-      second: 3.23
+      second: 10
     - first:
         name: _FogSpeed
       second: 0.005
@@ -137,8 +137,14 @@ Material:
         name: _ZWrite
       second: 1
     - first:
+        name: _node_1386
+      second: 0.007
+    - first:
         name: _node_1462
       second: 2.14
+    - first:
+        name: _node_2076
+      second: 0.53
     m_Colors:
     - first:
         name: _Color
@@ -147,5 +153,8 @@ Material:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
+        name: _FadeColor
+      second: {r: 0, g: 0.33793116, b: 1, a: 1}
+    - first:
         name: _FogColor
-      second: {r: 0.8308824, g: 0.81402874, b: 0.67814666, a: 1}
+      second: {r: 0, g: 0.71034503, b: 1, a: 1}
