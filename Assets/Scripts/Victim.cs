@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class Victim : MonoBehaviour {
 
@@ -98,6 +99,8 @@ public class Victim : MonoBehaviour {
 
     public void Finish(){
         player.score++;
+        Effects effects = GameObject.FindGameObjectsWithTag("Effects").Where(g => g.GetComponent<Effects>() != null).Select(g => g.GetComponent<Effects>()).FirstOrDefault();
+        effects.Do(Effects.EffectType.FireWorks, transform.position);
         Kill();
     }
 
