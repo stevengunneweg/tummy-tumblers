@@ -9,6 +9,7 @@ public class GameFlow : MonoBehaviour {
     [Header("Prefabs")]
     public GameObject victimPrefab;
     public GameObject playerPrefab;
+    public GameObject builderPrefab;
 
     [Header("References")]
     public CameraController cameraController;
@@ -16,13 +17,16 @@ public class GameFlow : MonoBehaviour {
     public Transform towardsFinishTransform;
     public Transform victimParent;
     public Transform playerParent;
+    public Transform builderParent;
     public Transform mountainOverviewPointParent;
+    public Mountain mountain;
 
     [Header("Game Play")]
     public int amountOfPlayers = 4;
     private int maxAmountOfPlayers = 4;
 
     private void Start() {
+        builderParent.gameObject.SetActive(false);
         StartGameFlow();
     }
 
@@ -44,13 +48,21 @@ public class GameFlow : MonoBehaviour {
             cameraController.Focus(mountainFocusGroup);
             yield return new WaitForSeconds(5f);
 
-            // TODO add build round here
+            builderParent.gameObject.SetActive(true);
+            foreach (Transform builderChild in builderParent) {
+                Builder builder = builderChild.GetComponent<Builder>();
+                builder.numberOfPresses = builder.player.score;
+                builder.Reset();
+            }
+            yield return new WaitForSeconds(10f);
+            builderParent.gameObject.SetActive(false);
         }
     }
 
     private void CreatePlayers() {
         int amountOfPlayers = Mathf.Max(2, Mathf.Min(maxAmountOfPlayers, this.amountOfPlayers));
         for (int i = 0; i < amountOfPlayers; i++) {
+            // Create Player
             GameObject instance = Instantiate(playerPrefab);
             instance.name = playerPrefab.name + " " + i.ToString("00");
             instance.transform.parent = playerParent;
@@ -58,6 +70,16 @@ public class GameFlow : MonoBehaviour {
             Player player = instance.GetComponent<Player>();
             player.color = Player.COLORS[i];
             player.index = i;
+            player.controllerIndex = i;
+
+            // Create Builder
+            GameObject builderInstance = Instantiate(builderPrefab);
+            builderInstance.name = builderPrefab.name + " (Player " + i.ToString("00") + ")";
+            builderInstance.transform.parent = builderParent;
+
+            Builder builder = builderInstance.GetComponent<Builder>();
+            builder.player = player;
+            builder.mountain = mountain;
         }
     }
 

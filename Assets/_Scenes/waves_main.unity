@@ -862,7 +862,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 297722507}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.4, y: 7.3152447, z: 14.335152}
+  m_LocalPosition: {x: 8.4, y: 7.315189, z: 14.335318}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1764968763}
@@ -1150,6 +1150,7 @@ Transform:
   - {fileID: 1994621406}
   - {fileID: 464196981}
   - {fileID: 695412739}
+  - {fileID: 901427829}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1737,6 +1738,34 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
+--- !u!1 &901427828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 901427829}
+  m_Layer: 0
+  m_Name: Builders
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &901427829
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 901427828}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 435451667}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &929437678
 GameObject:
   m_ObjectHideFlags: 0
@@ -2021,12 +2050,16 @@ MonoBehaviour:
     type: 2}
   playerPrefab: {fileID: 1360138424723830, guid: 1e0664694815b7f46b9c616c5e5eb91f,
     type: 2}
+  builderPrefab: {fileID: 1175762448931298, guid: 933e2c180ba59ab49acbeb98b630b3ad,
+    type: 2}
   cameraController: {fileID: 855964294}
   spawnPointGroup: {fileID: 1090847062}
   towardsFinishTransform: {fileID: 1133288196}
   victimParent: {fileID: 812184517}
   playerParent: {fileID: 998551357}
+  builderParent: {fileID: 901427829}
   mountainOverviewPointParent: {fileID: 1764968763}
+  mountain: {fileID: 1994621405}
   amountOfPlayers: 4
 --- !u!1 &1090847060
 GameObject:
