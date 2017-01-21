@@ -26,11 +26,21 @@ public class Builder : MonoBehaviour {
 
         string xAxis = prefix + "_Xaxis";
         string yAxis = prefix + "_Yaxis";
+        string arrowXAxis = prefix + "_ArrowXaxis";
+        string arrowYAxis = prefix + "_ArrowYaxis";
         string aButton = prefix + "_Abutton";
         string bButton = prefix + "_Bbutton";
 
-        transform.position += transform.right * -Input.GetAxis(xAxis);
-        transform.position += transform.forward * Input.GetAxis(yAxis);
+        float xvalue = Input.GetAxis(xAxis);
+        if(Input.GetAxis(arrowXAxis) >= 0.07f || Input.GetAxis(arrowXAxis) <= -0.07f)
+            xvalue = Input.GetAxis(arrowXAxis);
+
+        float yValue = Input.GetAxis(yAxis);
+        if (Input.GetAxis(arrowYAxis) >= 0.07f || Input.GetAxis(arrowYAxis) <= -0.07f)
+            yValue = -Input.GetAxis(arrowYAxis);
+        
+        transform.position += transform.right * -xvalue;
+        transform.position += transform.forward * yValue;
 
         if (_currentNumberOfPresses > 0) {
             if (Input.GetButtonDown(aButton)) {
