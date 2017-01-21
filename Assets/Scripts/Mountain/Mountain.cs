@@ -168,7 +168,7 @@ public class Mountain : MonoBehaviour {
         meshFilter.sharedMesh = mesh;
         meshCollider.sharedMesh = mesh;
 
-        UpdateMountainSide();
+        UpdateMountain();
     }
     #endregion
 
@@ -178,7 +178,7 @@ public class Mountain : MonoBehaviour {
         meshFilter.sharedMesh = mesh;
         meshCollider.sharedMesh = mesh;
 
-        UpdateMountainSide();
+        UpdateMountain();
     }
 
     public void Increase(Vector3 worldPoint, float globalRadius, AnimationCurve falloffCurve, float amount) {
@@ -217,7 +217,7 @@ public class Mountain : MonoBehaviour {
         mesh.RecalculateNormals();
         meshCollider.sharedMesh = mesh;
 
-        UpdateMountainSide();
+        UpdateMountain();
     }
 
     [ContextMenu("Smooth (might take some time!)")]
@@ -235,11 +235,12 @@ public class Mountain : MonoBehaviour {
             //workingMesh.vertices = SmoothFilter.laplacianFilter(workingMesh.vertices, workingMesh.triangles);
             sourceMesh.vertices = SmoothFilter.hcFilter(workingMesh.vertices, sourceMesh.vertices, workingMesh.triangles, 0.0f, 0.5f);
 
-        UpdateMountainSide();
+        UpdateMountain();
     }
 
-    [ContextMenu("Update Mountain Side")]
-    public void UpdateMountainSide() {
+    [ContextMenu("Update Mountain")]
+    public void UpdateMountain() {
         GetComponentInChildren<MountainSide>().Regenerate();
+        GetComponentInChildren<MountainFront>().Regenerate();
     }
 }
