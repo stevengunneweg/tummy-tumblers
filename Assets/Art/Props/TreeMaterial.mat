@@ -127,7 +127,7 @@ Material:
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _ObjectColor
-      second: {r: 0.015138397, g: 0.41176468, b: 0.26353064, a: 1}
+      second: {r: 0.15024613, g: 0.30882353, b: 0.120350346, a: 1}
     - first:
         name: _RimColor
       second: {r: 0.035034597, g: 0.5955882, b: 0.31724432, a: 1}
