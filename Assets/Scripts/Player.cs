@@ -11,6 +11,12 @@ public class Player : MonoBehaviour {
     [HideInInspector]
     public Color color;
 
+    public Color realColor {
+        get {
+            return COLORS[controllerIndex];
+        }
+    }
+
     public int score = 0;
 
     public string GetAxisPrefix() {
