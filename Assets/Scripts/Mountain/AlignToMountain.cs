@@ -5,6 +5,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class AlignToMountain : MonoBehaviour {
 
+    public bool alignRotation = false;
     public Color debugColor = Color.red;
     public Vector3? lastHit;
 
@@ -12,6 +13,9 @@ public class AlignToMountain : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(new Ray(transform.position + Vector3.up * 99999, Vector3.down), out hit, float.PositiveInfinity, LayerMask.GetMask("Mountain"))) {
             lastHit = hit.point;
+            if (alignRotation) {
+                transform.up = hit.normal;
+            }
             transform.position = hit.point;
         } else {
             lastHit = null;
