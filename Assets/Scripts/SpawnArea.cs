@@ -20,7 +20,12 @@ public class SpawnArea : MonoBehaviour {
     [SerializeField]
     private Text startText;
 
+    [SerializeField]
+    private Text readyText;
+
     private MenuVictim victim;
+
+    public bool IsReady;
 
     private void Start(){
         Spawn();
@@ -33,9 +38,27 @@ public class SpawnArea : MonoBehaviour {
         victim.spawnArea = this;
         victim.transform.rotation = Random.rotation;
         startText.gameObject.SetActive(false);
+        readyText.gameObject.SetActive(true);
         cylinderRenderer.material.SetColor("_ObjectColor", victim.player.realColor);
     }
 
+    public void ReadyUp(){
+        IsReady = true;
+        readyText.gameObject.SetActive(false);
+    }
+
+    public void Unready(){
+        IsReady = false;
+        readyText.gameObject.SetActive(true);
+    }
+
     private void Update(){
+        if(Input.GetButtonDown(victim.player.GetAxisPrefix() + "_Abutton")){
+            ReadyUp();
+        }
+
+        if(Input.GetButtonDown(victim.player.GetAxisPrefix() + "_Bbutton")){
+            Unready();
+        }
     }
 }
