@@ -11,6 +11,8 @@ public class MineStructure : BaseStructure {
     private GameObject visualGameObject;
 
     public override void OnCollisionWithVictim(Collision collision, Victim victim){
+		GetComponent<AudioSource> ().Play ();
+
         FindObjectOfType<Mountain>().Increase(transform.position, 3, AnimationCurve.EaseInOut(0, 1, 0, 1), -0.4f);
 
         particlesGameObject.SetActive(true);
