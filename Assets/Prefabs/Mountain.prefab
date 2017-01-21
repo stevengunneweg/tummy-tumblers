@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 33339949267461214}
   - component: {fileID: 23850608982555436}
   - component: {fileID: 64593580164194998}
+  - component: {fileID: 114942114443636310}
   m_Layer: 8
   m_Name: Mountain
   m_TagString: Untagged
@@ -299,3 +300,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0df2ad9c1c05428a8f6d8d914ed0eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114942114443636310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1838028174437234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883358b0424146c4c82a9ea1d9058541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _increaseCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  radius: 3
+  amount: 0.5
