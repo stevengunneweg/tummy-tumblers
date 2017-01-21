@@ -48,7 +48,13 @@ public class GameFlow : MonoBehaviour {
             yield return new WaitForSeconds(5f);
 
             builderParent.gameObject.SetActive(true);
+            foreach (Transform builderChild in builderParent) {
+                Builder builder = builderChild.GetComponent<Builder>();
+                builder.numberOfPresses = builder.player.score;
+                builder.Reset();
+            }
             yield return new WaitForSeconds(10f);
+            builderParent.gameObject.SetActive(false);
         }
     }
 
@@ -63,13 +69,14 @@ public class GameFlow : MonoBehaviour {
             Player player = instance.GetComponent<Player>();
             player.color = Player.COLORS[i];
             player.index = i;
+            player.controllerIndex = i;
 
             // Create Builder
             GameObject builderInstance = Instantiate(builderPrefab);
             builderInstance.name = builderPrefab.name + " (Player " + i.ToString("00") + ")";
             builderInstance.transform.parent = builderParent;
 
-            Builder builder = instance.GetComponent<Builder>();
+            Builder builder = builderInstance.GetComponent<Builder>();
             builder.player = player;
         }
     }

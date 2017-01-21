@@ -6,6 +6,7 @@ public class Player : MonoBehaviour {
 
     [HideInInspector]
     public int index;
+    public int controllerIndex;
 
     [HideInInspector]
     public Color color;
@@ -13,7 +14,7 @@ public class Player : MonoBehaviour {
     public int score = 0;
 
     public string GetAxisPrefix() {
-        switch (index) {
+        switch (controllerIndex) {
             case 0: return "P1";
             case 1: return "P2";
             case 2: return "P3";
