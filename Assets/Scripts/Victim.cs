@@ -12,8 +12,10 @@ public class Victim : MonoBehaviour {
     public Player player;
     [HideInInspector]
     public Mountain mountain;
-    private Vector3 collisionVector;
+    [HideInInspector]
+    public int index = 0;
 
+    private Vector3 collisionVector;
     private const string deadzoneTag = "Deadzone";
     private const string finishTag = "Finish";
 	private bool gender;
