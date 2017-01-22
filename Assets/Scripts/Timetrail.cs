@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Timetrail : MonoBehaviour {
 
+    [SerializeField]
+    private AudioSource ahwSoundEffect;
+
+    [SerializeField]
+    private AudioSource dingSound;
+
     private TimetrailUI ui;
 
     private float roundStartedTime;
@@ -27,6 +33,8 @@ public class Timetrail : MonoBehaviour {
         ui.SpawnElement(player, time, rankings.Count + 1);
 
         rankings.Add(player);
+
+        dingSound.Play();
     }
 
     public void OnVictimDied(Player player){
@@ -36,6 +44,11 @@ public class Timetrail : MonoBehaviour {
     public void OnEverybodyFinished(){
         foreach(Player player in diedPlayers){
             ui.SpawnElement(player, float.MaxValue, int.MaxValue, true);
+        }
+
+        if(diedPlayers.Count != 0){
+            ahwSoundEffect.Play();
+            dingSound.Play();
         }
     }
 
