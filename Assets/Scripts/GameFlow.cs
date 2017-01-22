@@ -38,6 +38,7 @@ public class GameFlow : MonoBehaviour {
 
     [Header("Game Play")]
     public int amountOfPlayers = 4;
+    public const int maxAmountOfPlayers = 4;
     public int maxScore = 10;
 
 	private gameData data;
@@ -160,7 +161,6 @@ public class GameFlow : MonoBehaviour {
     }
 
     private void CreatePlayers() {
-        //int amountOfPlayers = Mathf.Max(2, Mathf.Min(maxAmountOfPlayers, this.amountOfPlayers));
 		for (int i = 0; i < maxAmountOfPlayers; i++) {
 			if (data != null) {
 				if (!data.ReadyPlayers [i]) {
