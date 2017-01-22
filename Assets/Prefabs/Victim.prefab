@@ -1329,7 +1329,7 @@ MonoBehaviour:
     m_RotationOrder: 0
   biemCurveIntensity: 4
   biemCanvas: {fileID: 1172502055290516}
-  biemTextRectTransform: {fileID: 224288460886755464}
+  biemText: {fileID: 114730470441456086}
   biemCanvasIntensity: 2
   biemShowCanvasTimeThreshold: 0.25
   destroyDuration: 3

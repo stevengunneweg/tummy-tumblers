@@ -127,6 +127,10 @@ public class GameFlow : MonoBehaviour {
 
             FindObjectOfType<Timetrail>().OnEverybodyFinished();
 
+            yield return new WaitForSeconds(1);
+
+            FindObjectOfType<Timetrail>().OnDoPointsCalculation(8);
+
             // Wait for the mountain to get into view
             yield return new WaitForSeconds(4f);
 

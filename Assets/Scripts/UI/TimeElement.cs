@@ -27,6 +27,8 @@ public class TimeElement : MonoBehaviour {
     [SerializeField]
     private Sprite dead;
 
+    public Player player;
+
     private void Start(){
         InstantHide();
         Show();
@@ -62,6 +64,20 @@ public class TimeElement : MonoBehaviour {
     public void SetDead(){
         icon.gameObject.SetActive(true);
         icon.sprite = dead;
+    }
+
+    public void DoPointAnimation(int point){
+        StartCoroutine(PointRoutine(point));
+    }
+
+    private IEnumerator PointRoutine(int point){
+        for(int i = 0; i < point; i++){
+            player.score++;
+            time.text = "+" + i;
+            time.transform.localScale = Vector3.zero;
+            time.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutBack);
+            yield return new WaitForSeconds(0.3f);
+        }
     }
 
 }

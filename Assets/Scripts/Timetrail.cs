@@ -52,6 +52,10 @@ public class Timetrail : MonoBehaviour {
         }
     }
 
+    public void OnDoPointsCalculation(int maxPoints){
+        ui.DoPointAnimation(maxPoints);
+    }
+
     public void OnRoundEnded(){
         ui.Hide();
     }
