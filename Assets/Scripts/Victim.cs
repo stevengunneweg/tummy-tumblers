@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.Linq;
 
@@ -34,7 +35,7 @@ public class Victim : MonoBehaviour {
     public float biemCurveIntensity = 1f;
 
     public GameObject biemCanvas;
-    public RectTransform biemTextRectTransform;
+    public Text biemText;
     public float biemCanvasIntensity = 1f;
     public float biemShowCanvasTimeThreshold = 1f;
 
@@ -83,7 +84,8 @@ public class Victim : MonoBehaviour {
         float biemCanvasValue = hasEnded ? 1 : ((biemEvaluate - 1) * biemCanvasIntensity + 1);
         gfx.transform.localScale = Vector3.one * biemCurveValue;
         biemCanvas.gameObject.SetActive(!hasEnded && _currentDestroyTime > biemShowCanvasTimeThreshold * destroyDuration);
-        biemTextRectTransform.localScale = Vector3.one * biemCanvasValue;
+        biemText.transform.localScale = Vector3.one * biemCanvasValue;
+        biemText.color = player.color;
     }
 
     protected void Start() {
