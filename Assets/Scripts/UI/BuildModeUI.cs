@@ -4,14 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Linq;
+using System;
 
 public class BuildModeUI : MonoBehaviour {
 
     [SerializeField]
     private Text titleText;
+    [SerializeField]
+    private Text placeMessageText;
 
     [SerializeField]
     private BuildModeOverlay[] overlays;
+
+    private Builder[] _builders;
 
     private void Awake(){
         titleText.gameObject.SetActive(false);
@@ -28,7 +33,16 @@ public class BuildModeUI : MonoBehaviour {
         });
     }
 
+    protected void Update() {
+        if (placeMessageText.gameObject.activeInHierarchy && _builders != null) {
+            string text = "Press <A> to build. Waiting for AMOUNT players to build...";
+            text = text.Replace("AMOUNT", _builders.Where(b => !b.HasBuild()).Count().ToString());
+            placeMessageText.text = text;
+        }
+    }
+
     public void ShowBuildOverlays(List<Builder> builders){
+        _builders = builders.ToArray();
         for(int i = 0; i < builders.Count; i++){
             overlays[i].Setup(builders[i]);
         }
@@ -39,5 +53,13 @@ public class BuildModeUI : MonoBehaviour {
         if(overlay != null){
             overlay.Hide();
         }
+    }
+
+    public void HidePlacingHelpMessage() {
+        placeMessageText.gameObject.SetActive(false);
+    }
+
+    public void ShowPlacingHelpMessage() {
+        placeMessageText.gameObject.SetActive(true);
     }
 }

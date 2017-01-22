@@ -134,7 +134,6 @@ public class GameFlow : MonoBehaviour {
                 gameEndedCanvas.Show(players);
                 yield break;
             }
-
             FindObjectOfType<Timetrail>().OnRoundEnded();
 
             // Start building
@@ -151,11 +150,13 @@ public class GameFlow : MonoBehaviour {
             yield return new WaitForSeconds(2f);
 
             // Show the build overlay and wait for them to build, then hide builder
+            buildModeUI.ShowPlacingHelpMessage();
             buildModeUI.ShowBuildOverlays(builders);
             while(builders.Exists(b => b.HasBuild() == false)){ yield return null; }
             foreach(Builder builder in builders){
                 buildModeUI.HideBuildOverlay(builder);
             }
+            buildModeUI.HidePlacingHelpMessage();
             builderParent.gameObject.SetActive(false);
         }
     }
