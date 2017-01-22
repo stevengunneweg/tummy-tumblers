@@ -53,10 +53,16 @@ public class Builder : MonoBehaviour {
         if (Input.GetAxis(arrowYAxis) >= 0.07f || Input.GetAxis(arrowYAxis) <= -0.07f)
             yValue = -Input.GetAxis(arrowYAxis);
 
-        if (xvalue > 0.02 || xvalue < -0.02)
-            transform.position += transform.right * -xvalue * moveSpeed;
-        if (yValue > 0.02 || yValue < -0.02)
-            transform.position += transform.forward * yValue * moveSpeed;
+		if (xvalue > 0.02 || xvalue < -0.02) {
+			if ((transform.position.x < 17 || xvalue > 0) && (transform.position.x > -17 || xvalue < 0)) {
+				transform.position += transform.right * -xvalue * moveSpeed;
+			}
+		}
+		if (yValue > 0.02 || yValue < -0.02) {
+			if ((transform.position.z < 52.5f || yValue < 0) && (transform.position.z > 15 || yValue > 0)) {
+				transform.position += transform.forward * yValue * moveSpeed;
+			}
+		}
 
 		if (Input.GetButtonDown (aButton) || (player.index == 0 && Input.GetKeyDown(KeyCode.Space)) && _buildingAllowed) {
             BuildStructure();
