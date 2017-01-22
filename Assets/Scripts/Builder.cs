@@ -64,7 +64,7 @@ public class Builder : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetButtonDown (aButton) || (player.index == 0 && Input.GetKeyDown(KeyCode.Space)) && _buildingAllowed) {
+		if ((Input.GetButtonDown (aButton) || (player.index == 0 && Input.GetKeyDown(KeyCode.Space))) && _buildingAllowed) {
             BuildStructure();
         }
     }
