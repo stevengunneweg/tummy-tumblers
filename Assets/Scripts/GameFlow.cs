@@ -63,6 +63,9 @@ public class GameFlow : MonoBehaviour {
 
         // Start the game
         while (true) {
+
+            yield return new WaitForSeconds(1f);
+
             // Spawn new round of victims and focus camera on them
             SpawnVictims();
             Transform[] victimFocusGroup = victimParent.GetComponentsInChildren<Transform>().Skip(1).Include(towardsFinishTransform).ToArray();
@@ -84,6 +87,8 @@ public class GameFlow : MonoBehaviour {
                 tuuuut2Sound.Play();
                 yield return new WaitForSeconds(1);
             }
+
+            FindObjectOfType<Timetrail>().OnRoundStarted();
 
             tuuuutSound.Play();
             musicSound.Play();
@@ -117,8 +122,12 @@ public class GameFlow : MonoBehaviour {
                 yield break;
             }
 
+            FindObjectOfType<Timetrail>().OnEverybodyFinished();
+
             // Wait for the mountain to get into view
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(4f);
+
+            FindObjectOfType<Timetrail>().OnRoundEnded();
 
             // Start building
             buildModeUI.ShowBuildTime();
