@@ -33,6 +33,7 @@ public class GameFlow : MonoBehaviour {
     public BuildModeUI buildModeUI;
     public Text goText;
     public AudioSource tuuuutSound;
+    public AudioSource tuuuut2Sound;
     public AudioSource musicSound;
 
     [Header("Game Play")]
@@ -80,6 +81,7 @@ public class GameFlow : MonoBehaviour {
                 goText.transform.localScale = Vector3.zero;
                 goText.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutBack);
                 goText.text = i.ToString();
+                tuuuut2Sound.Play();
                 yield return new WaitForSeconds(1);
             }
 

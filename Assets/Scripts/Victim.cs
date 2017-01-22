@@ -10,6 +10,7 @@ public class Victim : MonoBehaviour {
 	public List<AudioClip> soundsFemale;
 	public AudioClip soundScreamMale;	
 	public AudioClip soundScreamFemale;
+    public AudioSource explosionSound;
     
     [HideInInspector]
     public Player player;
@@ -114,7 +115,13 @@ public class Victim : MonoBehaviour {
     }
 
     public void Kill(){
+        if(!gfx.activeSelf){
+            return;
+        }
+
         Effects.instance.Do(Effects.EffectType.Explosion, transform.position);
-        Destroy(gameObject);
+        explosionSound.Play();
+        gfx.gameObject.SetActive(false);
+        Destroy(gameObject, 2);
     }
 }
