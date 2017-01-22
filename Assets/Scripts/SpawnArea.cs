@@ -39,10 +39,11 @@ public class SpawnArea : MonoBehaviour {
         victim.transform.position = spawnPoint.position;
         victim.spawnArea = this;
         victim.transform.rotation = Random.rotation;
+        victim.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().materials[0].color =  victim.player.realColor;
         startText.gameObject.SetActive(false);
         readyText.gameObject.SetActive(true);
-        cylinderRenderer.material.SetColor("_ObjectColor", victim.player.realColor);
-        cylinderRenderer.material.DOColor(victim.player.realColor, "_ObjectColor", 0.5f).OnComplete(delegate() {
+        cylinderRenderer.material.SetColor("_ObjectColor", Color.white);
+        cylinderRenderer.material.DOColor(Color.Lerp(Color.white, victim.player.realColor, 0.85f), "_ObjectColor", 0.5f).OnComplete(delegate() {
             Started = true; 
         });
     }
