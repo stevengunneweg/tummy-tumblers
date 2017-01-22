@@ -122,10 +122,12 @@ public class GameFlow : MonoBehaviour {
                 yield break;
             }
 
-            FindObjectOfType<Timetrail>().OnRoundEnded();
+            FindObjectOfType<Timetrail>().OnEverybodyFinished();
 
             // Wait for the mountain to get into view
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(4f);
+
+            FindObjectOfType<Timetrail>().OnRoundEnded();
 
             // Start building
             buildModeUI.ShowBuildTime();

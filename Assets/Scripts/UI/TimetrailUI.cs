@@ -11,12 +11,28 @@ public class TimetrailUI : MonoBehaviour {
         elementTemplate.gameObject.SetActive(false);
     }
 
-    public void SpawnElement(Player player, float time, int position){
+    public void SpawnElement(Player player, float time, int position, bool died = false){
         TimeElement element = Instantiate(elementTemplate, elementTemplate.transform.parent);
         element.Show();
         element.background.color = player.color;
-        element.time.text = time.ToString("F1") + " <size='27'>sec</size>";
-        element.position.text = position + ".";
+
+        if(time == float.MaxValue){
+            element.time.text = "died..";
+        }else{
+            element.time.text = time.ToString("F1") + " <size='27'>sec</size>";
+        }
+
+
+        if(position == int.MaxValue){
+            element.position.text = "";
+        }else{
+            element.position.text = position + ".";
+        }
+        element.SetPosition(position);
+
+        if(died){
+            element.SetDead();
+        }
     }
 
     public void Hide(){

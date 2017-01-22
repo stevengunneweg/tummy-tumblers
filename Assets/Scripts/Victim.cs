@@ -122,6 +122,7 @@ public class Victim : MonoBehaviour {
         if(!gfx.activeSelf){
             return;
         }
+        FindObjectOfType<Timetrail>().OnVictimDied(player);
 
         Effects.instance.Do(Effects.EffectType.Explosion, transform.position);
         explosionSound.Play();
