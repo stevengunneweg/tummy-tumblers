@@ -31,6 +31,8 @@ public class Effects : MonoBehaviour {
 
     public GameObject Do(EffectType effectType, Vector3 worldPosition) { return Do(effectType, worldPosition, Quaternion.identity); }
     public GameObject Do(EffectType effectType, Vector3 worldPosition, Quaternion worldRotation, Transform parent = null) {
+        if (effectType == EffectType.Explosion)
+            Debug.Log("Explosion Effect!");
         Effect effect = effects.Where(e => e.effectType == effectType).FirstOrDefault();
         if (effect == null) {
             Debug.LogWarning("Effect of type '" + effectType.ToString() + "' does not exist!");

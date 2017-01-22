@@ -897,6 +897,55 @@ MonoBehaviour:
   player: {fileID: 0}
   mountain: {fileID: 0}
   index: 0
+  gfx: {fileID: 1203203272320956}
+  biemCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.49974635
+      value: 1.0000824
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.6
+      value: 1.1496576
+      inSlope: -0.00059604645
+      outSlope: -0.00059604645
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.7
+      value: 1.0000001
+      inSlope: -0
+      outSlope: -0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.8
+      value: 1.2244862
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.9
+      value: 1.0000001
+      inSlope: -0
+      outSlope: -0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1.2993151
+      inSlope: -0
+      outSlope: -0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
   destroyDuration: 2.5
   destroyDistanceThreshold: 0.75
 --- !u!135 &135106049568366230
