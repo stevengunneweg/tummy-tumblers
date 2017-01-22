@@ -110,6 +110,7 @@ public class Victim : MonoBehaviour {
 	}
 
     public void Finish(){
+        FindObjectOfType<Timetrail>().OnVictimFinished(this, player);
         player.score++;
 		Effects.instance.Do(Effects.EffectType.FireWorks, transform.position);
 		finishSound.Play();
@@ -121,6 +122,7 @@ public class Victim : MonoBehaviour {
         if(!gfx.activeSelf){
             return;
         }
+        FindObjectOfType<Timetrail>().OnVictimDied(player);
 
         Effects.instance.Do(Effects.EffectType.Explosion, transform.position);
         explosionSound.Play();
