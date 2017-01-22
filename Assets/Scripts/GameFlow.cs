@@ -28,6 +28,8 @@ public class GameFlow : MonoBehaviour {
     private int maxAmountOfPlayers = 4;
 
     private void Start() {
+        if (GameObject.Find("gameData") != null)
+            amountOfPlayers = GameObject.Find("gameData").GetComponent<gameData>().NRPlayer;
         builderParent.gameObject.SetActive(false);
         StartGameFlow();
     }
