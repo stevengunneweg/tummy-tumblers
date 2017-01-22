@@ -153,7 +153,7 @@ public class GameFlow : MonoBehaviour {
             GameObject builderInstance = Instantiate(builderPrefab);
             builderInstance.name = builderPrefab.name + " (Player " + i.ToString("00") + ")";
             builderInstance.transform.parent = builderParent;
-            builderInstance.transform.localPosition = Vector3.right * i;
+            builderInstance.transform.localPosition = Vector3.forward * 10 * (i - amountOfPlayers / 2.0f);
 
             Builder builder = builderInstance.GetComponent<Builder>();
             builder.player = player;

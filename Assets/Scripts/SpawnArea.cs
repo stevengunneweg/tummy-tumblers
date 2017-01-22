@@ -58,7 +58,6 @@ public class SpawnArea : MonoBehaviour {
     }
 
     private void Update(){
-        Debug.Log(GetComponent<Player>().GetAxisPrefix() + "_Abutton");
         if(!Started && Input.GetButtonDown(GetComponent<Player>().GetAxisPrefix() + "_Abutton")){
             Spawn();
         }
