@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using SLinq;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public class GameFlow : MonoBehaviour {
     
+    public static GameFlow instance {
+        get {
+            return GameObject.FindGameObjectsWithTag("GameFlow").Select(g => g.GetComponent<GameFlow>()).Where(g => g != null).FirstOrDefault();
+        }
+    }
+
     [Header("Prefabs")]
     public GameObject victimPrefab;
     public GameObject playerPrefab;
@@ -20,6 +27,7 @@ public class GameFlow : MonoBehaviour {
     public Transform victimParent;
     public Transform playerParent;
     public Transform builderParent;
+    public GameEndedCanvas gameEndedCanvas;
     public Transform mountainOverviewPointParent;
     public Mountain mountain;
     public BuildModeUI buildModeUI;
@@ -27,12 +35,20 @@ public class GameFlow : MonoBehaviour {
 
     [Header("Game Play")]
     public int amountOfPlayers = 4;
+    public int maxScore = 10;
     private int maxAmountOfPlayers = 4;
 
     private void Start() {
+        if (GameObject.Find("gameData") != null)
+            amountOfPlayers = GameObject.Find("gameData").GetComponent<gameData>().NRPlayer;
         builderParent.gameObject.SetActive(false);
-        goText.gameObject.SetActive(false);
         StartGameFlow();
+    }
+
+    protected void Update() {
+        if (Input.GetKeyDown(KeyCode.R)) {
+            SceneManager.LoadScene(0);
+        }
     }
 
     public Coroutine StartGameFlow() {
@@ -44,12 +60,14 @@ public class GameFlow : MonoBehaviour {
 
         // Start the game
         while (true) {
+            // Spawn new round of victims and focus camera on them
             SpawnVictims();
             Transform[] victimFocusGroup = victimParent.GetComponentsInChildren<Transform>().Skip(1).Include(towardsFinishTransform).ToArray();
             cameraController.Focus(victimFocusGroup);
 
             foreach(Victim victim in victimParent.GetComponentsInChildren<Victim>()){
                 victim.GetComponent<Rigidbody>().isKinematic = true;
+                victim.GetComponent<Tracker>().enabled = false;
             }
 
             // DO intro sequenceeeeee
@@ -72,46 +90,54 @@ public class GameFlow : MonoBehaviour {
 
             foreach(Victim victim in victimParent.GetComponentsInChildren<Victim>()){
                 victim.GetComponent<Rigidbody>().isKinematic = false;
+                victim.GetComponent<Tracker>().enabled = true;
             }
             // lets play
+
+            // Wait on the victims to all get destroyed (kill or finish)
             while (victimParent.transform.childCount > 0) {
                 yield return null;
             }
 
+            // Focus on the mountain
             Transform[] mountainFocusGroup = mountainOverviewPointParent.GetComponentsInChildren<Transform>().Skip(1).ToArray();
             cameraController.Focus(mountainFocusGroup);
 
+            // Check wincondition
+            Player[] players = playerParent.GetComponentsInChildren<Player>();
+            if (players.Any(p => p.score >= maxScore)) {
+                gameEndedCanvas.Show(players);
+                yield break;
+            }
+
+            // Wait for the mountain to get into view
             yield return new WaitForSeconds(2f);
 
+            // Start building
             buildModeUI.ShowBuildTime();
-
             builderParent.gameObject.SetActive(true);
             List<Builder> builders = builderParent.GetComponentsInChildren<Builder>().ToList();
             foreach (Builder builder in builders) {
                 builder.StructurePrefab = structurePrefabs[Random.Range(0, structurePrefabs.Count)];
                 builder.Reset();
             }
-
             cameraController.Focus(builderParent.GetComponentsInChildren<Transform>().Skip(1).ToArray());
 
+            // Wait for camera to focus on builders
             yield return new WaitForSeconds(2f);
 
+            // Show the build overlay and wait for them to build, then hide builder
             buildModeUI.ShowBuildOverlays(builders);
-
-            while(builders.Exists(b => b.HasBuild() == false)){
-                yield return new WaitForSeconds(1);
-            }
-
+            while(builders.Exists(b => b.HasBuild() == false)){ yield return null; }
             foreach(Builder builder in builders){
                 buildModeUI.HideBuildOverlay(builder);
             }
-
             builderParent.gameObject.SetActive(false);
         }
     }
 
     private void CreatePlayers() {
-        int amountOfPlayers = Mathf.Max(2, Mathf.Min(maxAmountOfPlayers, this.amountOfPlayers));
+        //int amountOfPlayers = Mathf.Max(2, Mathf.Min(maxAmountOfPlayers, this.amountOfPlayers));
         for (int i = 0; i < amountOfPlayers; i++) {
             // Create Player
             GameObject instance = Instantiate(playerPrefab);
@@ -127,7 +153,7 @@ public class GameFlow : MonoBehaviour {
             GameObject builderInstance = Instantiate(builderPrefab);
             builderInstance.name = builderPrefab.name + " (Player " + i.ToString("00") + ")";
             builderInstance.transform.parent = builderParent;
-            builderInstance.transform.localPosition = Vector3.zero;
+            builderInstance.transform.localPosition = Vector3.right * i;
 
             Builder builder = builderInstance.GetComponent<Builder>();
             builder.player = player;
