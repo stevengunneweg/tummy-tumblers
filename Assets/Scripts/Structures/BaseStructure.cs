@@ -12,6 +12,8 @@ public abstract class BaseStructure : MonoBehaviour {
 
     private Material defaultMaterial;
 
+	public bool isEditing = false;
+
     public abstract void OnCollisionWithVictim(Collision collision, Victim victim);
 
     private void Start()
@@ -29,8 +31,10 @@ public abstract class BaseStructure : MonoBehaviour {
 
     public void SetEditMode(bool inEditMode){
         if(inEditMode){
+			isEditing = true;
             ChangeMaterial(editMaterial);
         }else{
+			isEditing = false;
             ChangeMaterial(defaultMaterial);
         }
     }
@@ -49,16 +53,17 @@ public abstract class BaseStructure : MonoBehaviour {
 
 	public void SetBlocked(bool isBlocked) {
 		visualRenderer.material = editMaterial;
-		if (visualRenderer.transform.childCount > 0) {
-			for (int i = 0; i < visualRenderer.transform.childCount; i++) {
-				MeshRenderer renderer = visualRenderer.transform.GetChild(i).GetComponent<MeshRenderer>();
-				if (renderer != null) {
-					if (isBlocked) {
-						renderer.material.SetColor("_ObjectColor", Color.red);
-					} else {
-						renderer.material.SetColor("_ObjectColor", Color.green);
-					}
-				}
+		if (isBlocked) {
+			visualRenderer.material.SetColor("_ObjectColor", new Color(1, 0, 0, 0.5f));
+		} else {
+			visualRenderer.material.SetColor("_ObjectColor", new Color(0, 1, 0.216f, 0.5f));
+		}
+		if (visualRenderer.transform.childCount > 0)
+		{
+			for (int i = 0; i < visualRenderer.transform.childCount; i++)
+			{
+				if (visualRenderer.transform.GetChild(i).GetComponent<MeshRenderer>() != null)
+					visualRenderer.transform.GetChild(i).GetComponent<MeshRenderer>().material = visualRenderer.material;
 			}
 		}
 	}
