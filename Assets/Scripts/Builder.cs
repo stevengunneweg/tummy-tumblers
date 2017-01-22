@@ -76,7 +76,7 @@ public class Builder : MonoBehaviour {
 		bool canBuild = true;
 		for (int i = 0; i < structures.Count (); i++) {
 			if (tempPrefab != structures [i]) {
-				if (tempPrefab.GetComponent<Collider> ().bounds.Intersects (structures [i].GetComponent<Collider> ().bounds)) {
+				if (tempPrefab.GetComponent<Collider> ().bounds.Intersects (structures [i].GetComponent<Collider> ().bounds) && !structures[i].isEditing) {
 					canBuild = false;
 				}
 			}
