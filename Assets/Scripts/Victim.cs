@@ -126,6 +126,10 @@ public class Victim : MonoBehaviour {
 	}
 
     public void Finish(){
+        if(!gfx.activeSelf){
+            return;
+        }
+
         FindObjectOfType<Timetrail>().OnVictimFinished(this, player);
 		Effects.instance.Do(Effects.EffectType.FireWorks, transform.position);
 		finishSound.Play();

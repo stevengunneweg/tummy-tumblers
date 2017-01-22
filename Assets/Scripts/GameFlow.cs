@@ -119,13 +119,6 @@ public class GameFlow : MonoBehaviour {
             Transform[] mountainFocusGroup = mountainOverviewPointParent.GetComponentsInChildren<Transform>().Skip(1).ToArray();
             cameraController.Focus(mountainFocusGroup);
 
-            // Check wincondition
-            Player[] players = playerParent.GetComponentsInChildren<Player>();
-            if (players.Any(p => p.score >= maxScore)) {
-                gameEndedCanvas.Show(players);
-                yield break;
-            }
-
             FindObjectOfType<Timetrail>().OnEverybodyFinished();
 
             yield return new WaitForSeconds(1);
@@ -134,6 +127,13 @@ public class GameFlow : MonoBehaviour {
 
             // Wait for the mountain to get into view
             yield return new WaitForSeconds(4f);
+
+            // Check wincondition
+            Player[] players = playerParent.GetComponentsInChildren<Player>();
+            if (players.Any(p => p.score >= maxScore)) {
+                gameEndedCanvas.Show(players);
+                yield break;
+            }
 
             FindObjectOfType<Timetrail>().OnRoundEnded();
 
