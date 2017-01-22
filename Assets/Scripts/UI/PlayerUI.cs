@@ -18,7 +18,7 @@ public class PlayerUI : MonoBehaviour {
             Transform playerTransform = playerParent.GetChild(index);
             Player player = playerTransform.GetComponent<Player>();
             nameText.text = "Player " + (player.index + 1);
-            scoreText.text = player.score.ToString() + "/15";
+            scoreText.text = player.score.ToString() + "/" + GameFlow.instance.maxScore.ToString();
 
             nameText.color = player.color;
             scoreText.color = player.color;
