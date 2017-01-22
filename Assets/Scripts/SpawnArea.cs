@@ -58,19 +58,16 @@ public class SpawnArea : MonoBehaviour {
     }
 
     private void Update(){
-        if(victim == null){
-            return;
-        }
-
-        if(!Started && Input.GetButtonDown(victim.player.GetAxisPrefix() + "_Abutton")){
+        Debug.Log(GetComponent<Player>().GetAxisPrefix() + "_Abutton");
+        if(!Started && Input.GetButtonDown(GetComponent<Player>().GetAxisPrefix() + "_Abutton")){
             Spawn();
         }
 
-        if(Started && Input.GetButtonDown(victim.player.GetAxisPrefix() + "_Abutton")){
+        if(Started && Input.GetButtonDown(GetComponent<Player>().GetAxisPrefix() + "_Abutton")){
             ReadyUp();
         }
 
-        if(Started && Input.GetButtonDown(victim.player.GetAxisPrefix() + "_Bbutton")){
+        if(Started && Input.GetButtonDown(GetComponent<Player>().GetAxisPrefix() + "_Bbutton")){
             Unready();
         }
     }
