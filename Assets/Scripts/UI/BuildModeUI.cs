@@ -29,7 +29,7 @@ public class BuildModeUI : MonoBehaviour {
     }
 
     public void ShowBuildOverlays(List<Builder> builders){
-        for(int i = 0; i < overlays.Length; i++){
+        for(int i = 0; i < builders.Count; i++){
             overlays[i].Setup(builders[i]);
         }
     }

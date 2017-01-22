@@ -22,6 +22,7 @@ public class BuildModeOverlay : MonoBehaviour {
     public void Setup(Builder builder){
         Builder = builder;
         background.color = builder.player.color;
+        playerText.text = "Player " + (builder.player.index + 1);
         gameObject.SetActive(true);
     }
 
