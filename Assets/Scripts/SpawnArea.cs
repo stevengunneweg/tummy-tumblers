@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class SpawnArea : MonoBehaviour {
 
@@ -26,9 +27,10 @@ public class SpawnArea : MonoBehaviour {
     private MenuVictim victim;
 
     public bool IsReady;
+    public bool Started;
 
     private void Start(){
-        Spawn();
+        readyText.gameObject.SetActive(false);
     }
 
     public void Spawn(){
@@ -40,6 +42,9 @@ public class SpawnArea : MonoBehaviour {
         startText.gameObject.SetActive(false);
         readyText.gameObject.SetActive(true);
         cylinderRenderer.material.SetColor("_ObjectColor", victim.player.realColor);
+        cylinderRenderer.material.DOColor(victim.player.realColor, "_ObjectColor", 0.5f).OnComplete(delegate() {
+            Started = true; 
+        });
     }
 
     public void ReadyUp(){
@@ -53,11 +58,19 @@ public class SpawnArea : MonoBehaviour {
     }
 
     private void Update(){
-        if(Input.GetButtonDown(victim.player.GetAxisPrefix() + "_Abutton")){
+        if(victim == null){
+            return;
+        }
+
+        if(!Started && Input.GetButtonDown(victim.player.GetAxisPrefix() + "_Abutton")){
+            Spawn();
+        }
+
+        if(Started && Input.GetButtonDown(victim.player.GetAxisPrefix() + "_Abutton")){
             ReadyUp();
         }
 
-        if(Input.GetButtonDown(victim.player.GetAxisPrefix() + "_Bbutton")){
+        if(Started && Input.GetButtonDown(victim.player.GetAxisPrefix() + "_Bbutton")){
             Unready();
         }
     }
