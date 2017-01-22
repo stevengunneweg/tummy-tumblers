@@ -33,6 +33,7 @@ public class GameFlow : MonoBehaviour {
     public BuildModeUI buildModeUI;
     public Text goText;
     public AudioSource tuuuutSound;
+    public AudioSource musicSound;
 
     [Header("Game Play")]
     public int amountOfPlayers = 4;
@@ -81,7 +82,10 @@ public class GameFlow : MonoBehaviour {
                 goText.text = i.ToString();
                 yield return new WaitForSeconds(1);
             }
+
             tuuuutSound.Play();
+            musicSound.Play();
+
             goText.transform.localScale = Vector3.zero;
             goText.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutBack);
             goText.text = "GOOOOO!";
