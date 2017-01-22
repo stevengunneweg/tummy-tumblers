@@ -17,8 +17,11 @@ public class Menu : MonoBehaviour {
         SpawnArea[] areas = FindObjectsOfType<SpawnArea>();
 
         if(areas.Count(a => a.IsReady) == areas.Count(a => a.Started) && areas.Count(a => a.IsReady) != 0){
-            gameData.GetComponent<gameData>().NRPlayer = areas.Count(a => a.IsReady);
-            SceneManager.LoadScene("waves_main");
+            if (areas.Count(a => a.IsReady) > 1)
+            {
+                gameData.GetComponent<gameData>().NRPlayer = areas.Count(a => a.IsReady);
+                SceneManager.LoadScene("waves_main");
+            }
 
         }
 	}
