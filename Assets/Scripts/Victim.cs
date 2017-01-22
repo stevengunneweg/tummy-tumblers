@@ -10,7 +10,8 @@ public class Victim : MonoBehaviour {
 	public List<AudioClip> soundsFemale;
 	public AudioClip soundScreamMale;	
 	public AudioClip soundScreamFemale;
-    public AudioSource explosionSound;
+	public AudioSource finishSound;
+	public AudioSource explosionSound;
     
     [HideInInspector]
     public Player player;
@@ -111,8 +112,10 @@ public class Victim : MonoBehaviour {
     public void Finish(){
         FindObjectOfType<Timetrail>().OnVictimFinished(this, player);
         player.score++;
-        Effects.instance.Do(Effects.EffectType.FireWorks, transform.position);
-        Destroy(gameObject);
+		Effects.instance.Do(Effects.EffectType.FireWorks, transform.position);
+		finishSound.Play();
+		gfx.gameObject.SetActive(false);
+		Destroy(gameObject, 2);
     }
 
     public void Kill(){
