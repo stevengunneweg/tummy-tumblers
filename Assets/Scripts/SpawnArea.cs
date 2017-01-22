@@ -29,8 +29,12 @@ public class SpawnArea : MonoBehaviour {
     public bool IsReady;
     public bool Started;
 
+	private gameData data;
+
     private void Start(){
         readyText.gameObject.SetActive(false);
+
+		data = GameObject.Find ("gameData").GetComponent<gameData> ();
     }
 
     public void Spawn(){
@@ -51,11 +55,13 @@ public class SpawnArea : MonoBehaviour {
     public void ReadyUp(){
         IsReady = true;
         readyText.gameObject.SetActive(false);
+		data.ReadyPlayers [GetComponent<Player> ().controllerIndex] = true;
     }
 
     public void Unready(){
         IsReady = false;
         readyText.gameObject.SetActive(true);
+		data.ReadyPlayers [GetComponent<Player> ().controllerIndex] = false;
     }
 
     private void Update(){

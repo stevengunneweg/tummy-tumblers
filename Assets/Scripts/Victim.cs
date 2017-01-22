@@ -127,7 +127,6 @@ public class Victim : MonoBehaviour {
 
     public void Finish(){
         FindObjectOfType<Timetrail>().OnVictimFinished(this, player);
-        player.score++;
 		Effects.instance.Do(Effects.EffectType.FireWorks, transform.position);
 		finishSound.Play();
 		gfx.gameObject.SetActive(false);

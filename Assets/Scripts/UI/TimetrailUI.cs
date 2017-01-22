@@ -7,6 +7,8 @@ public class TimetrailUI : MonoBehaviour {
     [SerializeField]
     private TimeElement elementTemplate;
 
+    public List<TimeElement> spawnedElements = new List<TimeElement>();
+
     private void Start(){
         elementTemplate.gameObject.SetActive(false);
     }
@@ -15,6 +17,7 @@ public class TimetrailUI : MonoBehaviour {
         TimeElement element = Instantiate(elementTemplate, elementTemplate.transform.parent);
         element.Show();
         element.background.color = player.color;
+        element.player = player;
 
         if(time == float.MaxValue){
             element.time.text = "died..";
@@ -32,10 +35,21 @@ public class TimetrailUI : MonoBehaviour {
 
         if(died){
             element.SetDead();
+        }else{
+            spawnedElements.Add(element);
+        }
+    }
+
+    public void DoPointAnimation(int maxPoints){
+        int i = maxPoints;
+        foreach(TimeElement element in spawnedElements){
+            element.DoPointAnimation(i--);
         }
     }
 
     public void Hide(){
+        spawnedElements.Clear();
+
         foreach(TimeElement element in GetComponentsInChildren<TimeElement>()){
             element.Kill();
         }

@@ -40,9 +40,13 @@ public class GameFlow : MonoBehaviour {
     public int amountOfPlayers = 4;
     public int maxScore = 10;
 
+	private gameData data;
+
     private void Start() {
-        if (GameObject.Find("gameData") != null)
-            amountOfPlayers = GameObject.Find("gameData").GetComponent<gameData>().NRPlayer;
+		if (GameObject.Find ("gameData") != null) {
+			data = GameObject.Find ("gameData").GetComponent<gameData> ();
+			amountOfPlayers = data.NRPlayer;
+		}
         builderParent.gameObject.SetActive(false);
         StartGameFlow();
     }
@@ -123,6 +127,10 @@ public class GameFlow : MonoBehaviour {
 
             FindObjectOfType<Timetrail>().OnEverybodyFinished();
 
+            yield return new WaitForSeconds(1);
+
+            FindObjectOfType<Timetrail>().OnDoPointsCalculation(8);
+
             // Wait for the mountain to get into view
             yield return new WaitForSeconds(4f);
 
@@ -153,7 +161,13 @@ public class GameFlow : MonoBehaviour {
 
     private void CreatePlayers() {
         //int amountOfPlayers = Mathf.Max(2, Mathf.Min(maxAmountOfPlayers, this.amountOfPlayers));
-        for (int i = 0; i < amountOfPlayers; i++) {
+		for (int i = 0; i < maxAmountOfPlayers; i++) {
+			if (data != null) {
+				if (!data.ReadyPlayers [i]) {
+					continue;
+				}
+			}
+
             // Create Player
             GameObject instance = Instantiate(playerPrefab);
             instance.name = playerPrefab.name + " " + i.ToString("00");
