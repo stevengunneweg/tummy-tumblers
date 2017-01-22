@@ -134,6 +134,7 @@ public class Victim : MonoBehaviour {
 		Effects.instance.Do(Effects.EffectType.FireWorks, transform.position);
 		finishSound.Play();
 		gfx.gameObject.SetActive(false);
+        gameObject.GetComponent<SphereCollider>().enabled = false;
 		Destroy(gameObject, 2);
         hasEnded = true;
     }

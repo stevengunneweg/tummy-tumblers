@@ -20,7 +20,7 @@ public class MineStructure : BaseStructure {
 
         Vector3 shock = (collision.impulse * 2).normalized * 15f;
         victim.GetComponent<Rigidbody>().AddForce(shock, ForceMode.VelocityChange);
-
+        GetComponent<SphereCollider>().enabled = false;
 
         Destroy(gameObject, 1.5f);
         Destroy(victim.gameObject, 1f);
