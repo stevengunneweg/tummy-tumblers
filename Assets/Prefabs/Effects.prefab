@@ -63,5 +63,5 @@ MonoBehaviour:
     time: 3
   - effectType: 2
     variationPrefabs:
-    - {fileID: 100000, guid: 458abc31c1901574c81e0230331212b5, type: 2}
-    time: 3
+    - {fileID: 100002, guid: 9cc2834cb3b9cf643be9175e75858cb8, type: 2}
+    time: 10

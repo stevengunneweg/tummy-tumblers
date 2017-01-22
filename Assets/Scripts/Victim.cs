@@ -24,10 +24,14 @@ public class Victim : MonoBehaviour {
 	private bool gender;
 	private bool isFalling;
 
+    [Header("BIEM animation")]
+    public GameObject gfx;
+    public AnimationCurve biemCurve;
+
     [Header("Destroy")]
     public float destroyDuration = 1f;
     public float destroyDistanceThreshold = 1f;
-    private float _currentDestoryTime;
+    private float _currentDestroyTime;
     
     protected void Update() {
 		if (GetComponent<Rigidbody> ().velocity.y < -8) {
@@ -51,16 +55,19 @@ public class Victim : MonoBehaviour {
 
         // Check if moved forward more than the destroy distance threshold
         if (Mathf.Abs(oldestPosition.z - currentPosition.z) < destroyDistanceThreshold) {
-            _currentDestoryTime += Time.deltaTime;
-            if (_currentDestoryTime >= destroyDuration) {
+            _currentDestroyTime += Time.deltaTime;
+            if (_currentDestroyTime >= destroyDuration) {
                 Kill();
             }
         } else {
-            _currentDestoryTime = 0f;
+            _currentDestroyTime = 0f;
         }
+
+        // Scale Gfx based on destroy time curve
+        gfx.transform.localScale = Vector3.one * biemCurve.Evaluate(_currentDestroyTime / destroyDuration);
     }
 
-	protected void Start() {
+    protected void Start() {
 		this.gender = UnityEngine.Random.value <= 0.5f;
 	}
 
