@@ -109,6 +109,7 @@ public class Victim : MonoBehaviour {
 	}
 
     public void Finish(){
+        FindObjectOfType<Timetrail>().OnVictimFinished(this, player);
         player.score++;
         Effects.instance.Do(Effects.EffectType.FireWorks, transform.position);
         Destroy(gameObject);
