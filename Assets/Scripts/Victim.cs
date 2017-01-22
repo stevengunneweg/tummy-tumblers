@@ -48,20 +48,23 @@ public class Victim : MonoBehaviour {
 			this.isFalling = false;
 		}
 
-        // Find current and oldest position in Mountain space
-        Tracker tracker = GetComponent<Tracker>();
-        Vector3 oldestPosition = mountain.transform.InverseTransformPoint(tracker.GetOldestTrackedPosition());
-        Vector3 currentPosition = mountain.transform.InverseTransformPoint(transform.position);
+        if(!GetComponent<Rigidbody>().isKinematic){
+            // Find current and oldest position in Mountain space
+            Tracker tracker = GetComponent<Tracker>();
+            Vector3 oldestPosition = mountain.transform.InverseTransformPoint(tracker.GetOldestTrackedPosition());
+            Vector3 currentPosition = mountain.transform.InverseTransformPoint(transform.position);
 
-        // Check if moved forward more than the destroy distance threshold
-        if (Mathf.Abs(oldestPosition.z - currentPosition.z) < destroyDistanceThreshold) {
-            _currentDestroyTime += Time.deltaTime;
-            if (_currentDestroyTime >= destroyDuration) {
-                Kill();
+            // Check if moved forward more than the destroy distance threshold
+            if (Mathf.Abs(oldestPosition.z - currentPosition.z) < destroyDistanceThreshold) {
+                _currentDestroyTime += Time.deltaTime;
+                if (_currentDestroyTime >= destroyDuration) {
+                    Kill();
+                }
+            } else {
+                _currentDestroyTime = 0f;
             }
-        } else {
-            _currentDestroyTime = 0f;
         }
+
 
         // Scale Gfx based on destroy time curve
         gfx.transform.localScale = Vector3.one * biemCurve.Evaluate(_currentDestroyTime / destroyDuration);
