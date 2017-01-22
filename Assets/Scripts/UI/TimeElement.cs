@@ -71,8 +71,7 @@ public class TimeElement : MonoBehaviour {
     }
 
     private IEnumerator PointRoutine(int point){
-        for(int i = 0; i < point + 1; i++){
-            player.score++;
+        for(int i = 1; i < point + 1; i++){
             time.text = "+" + i;
             time.transform.localScale = Vector3.zero;
             time.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutBack);
