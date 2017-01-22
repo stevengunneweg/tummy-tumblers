@@ -13,3 +13,4 @@ Assets/UnityVS.meta
 *.unitypackage
 *.suo
 *.user
+obj/
