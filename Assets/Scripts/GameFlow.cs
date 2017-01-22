@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using SLinq;
+using DG.Tweening;
 
 public class GameFlow : MonoBehaviour {
     
@@ -22,6 +23,7 @@ public class GameFlow : MonoBehaviour {
     public Transform mountainOverviewPointParent;
     public Mountain mountain;
     public BuildModeUI buildModeUI;
+    public Text goText;
 
     [Header("Game Play")]
     public int amountOfPlayers = 4;
@@ -29,6 +31,7 @@ public class GameFlow : MonoBehaviour {
 
     private void Start() {
         builderParent.gameObject.SetActive(false);
+        goText.gameObject.SetActive(false);
         StartGameFlow();
     }
 
@@ -45,6 +48,32 @@ public class GameFlow : MonoBehaviour {
             Transform[] victimFocusGroup = victimParent.GetComponentsInChildren<Transform>().Skip(1).Include(towardsFinishTransform).ToArray();
             cameraController.Focus(victimFocusGroup);
 
+            foreach(Victim victim in victimParent.GetComponentsInChildren<Victim>()){
+                victim.GetComponent<Rigidbody>().isKinematic = true;
+            }
+
+            // DO intro sequenceeeeee
+            goText.gameObject.SetActive(true);
+            goText.transform.localScale = Vector3.zero;
+            goText.transform.DOScale(Vector3.one, 0.35f).SetEase(Ease.OutBack);
+            for(int i = 3; i != 0; i--){
+                goText.transform.localScale = Vector3.zero;
+                goText.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutBack);
+                goText.text = i.ToString();
+                yield return new WaitForSeconds(1);
+            }
+
+            goText.transform.localScale = Vector3.zero;
+            goText.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutBack);
+            goText.text = "GOOOOO!";
+            goText.transform.DOShakePosition(0.9f, 10, 80).OnComplete(delegate() {
+                goText.gameObject.SetActive(false); 
+            });
+
+            foreach(Victim victim in victimParent.GetComponentsInChildren<Victim>()){
+                victim.GetComponent<Rigidbody>().isKinematic = false;
+            }
+            // lets play
             while (victimParent.transform.childCount > 0) {
                 yield return null;
             }
