@@ -20,15 +20,23 @@ public class Victim : MonoBehaviour {
     [HideInInspector]
     public int index = 0;
 
+    private bool hasEnded = false;
+
     private Vector3 collisionVector;
     private const string deadzoneTag = "Deadzone";
     private const string finishTag = "Finish";
 	private bool gender;
 	private bool isFalling;
 
-    [Header("BIEM animation")]
+    [Header("BIEM")]
     public GameObject gfx;
     public AnimationCurve biemCurve;
+    public float biemCurveIntensity = 1f;
+
+    public GameObject biemCanvas;
+    public RectTransform biemTextRectTransform;
+    public float biemCanvasIntensity = 1f;
+    public float biemShowCanvasTimeThreshold = 1f;
 
     [Header("Destroy")]
     public float destroyDuration = 1f;
@@ -57,7 +65,9 @@ public class Victim : MonoBehaviour {
             Vector3 currentPosition = mountain.transform.InverseTransformPoint(transform.position);
 
             // Check if moved forward more than the destroy distance threshold
-            if (Mathf.Abs(oldestPosition.z - currentPosition.z) < destroyDistanceThreshold) {
+            //float distance = Mathf.Abs(oldestPosition.z - currentPosition.z);
+            float distance = Vector3.Distance(oldestPosition, currentPosition);
+            if (distance < destroyDistanceThreshold) {
                 _currentDestroyTime += Time.deltaTime;
                 if (_currentDestroyTime >= destroyDuration) {
                     Kill();
@@ -67,9 +77,13 @@ public class Victim : MonoBehaviour {
             }
         }
 
-
         // Scale Gfx based on destroy time curve
-        gfx.transform.localScale = Vector3.one * biemCurve.Evaluate(_currentDestroyTime / destroyDuration);
+        float biemEvaluate = biemCurve.Evaluate(_currentDestroyTime / destroyDuration);
+        float biemCurveValue = hasEnded ? 1 : ((biemEvaluate - 1) * biemCurveIntensity + 1);
+        float biemCanvasValue = hasEnded ? 1 : ((biemEvaluate - 1) * biemCanvasIntensity + 1);
+        gfx.transform.localScale = Vector3.one * biemCurveValue;
+        biemCanvas.gameObject.SetActive(!hasEnded && _currentDestroyTime > biemShowCanvasTimeThreshold * destroyDuration);
+        biemTextRectTransform.localScale = Vector3.one * biemCanvasValue;
     }
 
     protected void Start() {
@@ -101,7 +115,7 @@ public class Victim : MonoBehaviour {
 	private void OnCollisionExit(Collision collision) {
 		if (collision.collider.gameObject.layer == LayerMask.NameToLayer ("Victims")) {
 			if (this.collisionVector != Vector3.zero) {
-				Rigidbody objectBody = collision.collider.gameObject.GetComponent<Rigidbody> ();
+				Rigidbody objectBody = collision.collider.gameObject.GetComponent<Rigidbody>();
 				objectBody.AddForce (this.collisionVector.normalized * 500);
 				objectBody.AddForce (Vector3.up * 1000);
 				this.collisionVector = Vector3.zero;
@@ -115,6 +129,7 @@ public class Victim : MonoBehaviour {
 		finishSound.Play();
 		gfx.gameObject.SetActive(false);
 		Destroy(gameObject, 2);
+        hasEnded = true;
     }
 
     public void Kill(){
@@ -122,6 +137,7 @@ public class Victim : MonoBehaviour {
             return;
         }
 
+        hasEnded = true;
         Effects.instance.Do(Effects.EffectType.Explosion, transform.position);
         explosionSound.Play();
         gfx.gameObject.SetActive(false);

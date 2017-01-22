@@ -9,7 +9,11 @@ public class Player : MonoBehaviour {
     public int controllerIndex;
 
     [HideInInspector]
-    public Color color;
+    public Color color {
+        get {
+            return realColor;
+        }
+    }
 
     public Color realColor {
         get {

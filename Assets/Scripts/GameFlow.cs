@@ -39,7 +39,6 @@ public class GameFlow : MonoBehaviour {
     [Header("Game Play")]
     public int amountOfPlayers = 4;
     public int maxScore = 10;
-    private int maxAmountOfPlayers = 4;
 
     private void Start() {
         if (GameObject.Find("gameData") != null)
@@ -152,7 +151,6 @@ public class GameFlow : MonoBehaviour {
             instance.transform.parent = playerParent;
 
             Player player = instance.GetComponent<Player>();
-            player.color = Player.COLORS[i];
             player.index = i;
             player.controllerIndex = i;
 
