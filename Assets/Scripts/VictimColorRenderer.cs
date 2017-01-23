@@ -12,6 +12,12 @@ public class VictimColorRenderer : MonoBehaviour {
         if (victim == null)
             return;
 
-        colorRenderer.materials[materialIndex].color = victim.player.color;
+        Color color = victim.player.color;
+        if (victim.index == 0) {
+            color = color.Lighter();
+        } else {
+            color = color.Darker();
+        }
+        colorRenderer.materials[materialIndex].color = color;
     }
 }
